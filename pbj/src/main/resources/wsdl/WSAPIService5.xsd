@@ -1,0 +1,2529 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://www.WSAPI.AMS360.com/v3.0/DataContract" xmlns:ser="http://schemas.microsoft.com/2003/10/Serialization/" elementFormDefault="qualified" targetNamespace="http://www.WSAPI.AMS360.com/v3.0/DataContract" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="WSAPIService.xsd" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+  <xs:import schemaLocation="WSAPIService3.xsd" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+  <xs:import schemaLocation="WSAPIService2.xsd" namespace="http://schemas.datacontract.org/2004/07/System.IO" />
+  <xs:complexType name="FileChunkBeginRequest">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="NumberOfChunks" type="xs:int" />
+      <xs:element minOccurs="0" name="TotalBytes" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="FileChunkBeginRequest" nillable="true" type="tns:FileChunkBeginRequest" />
+  <xs:complexType name="FileChunkBeginResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="DocStageId" type="ser:guid" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="FileChunkBeginResponse" nillable="true" type="tns:FileChunkBeginResponse" />
+  <xs:complexType name="WSAPIGeneralFault">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Message" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="WSAPIGeneralFault" nillable="true" type="tns:WSAPIGeneralFault" />
+  <xs:complexType name="WSAPISecurityFault">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Message" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CausalityId" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="WSAPISecurityFault" nillable="true" type="tns:WSAPISecurityFault" />
+  <xs:complexType name="WSAPIBusinessFault">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Message" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="FaultDetails" nillable="true" type="tns:ArrayOfWSAPIBusinessFaultDetail" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="WSAPIBusinessFault" nillable="true" type="tns:WSAPIBusinessFault" />
+  <xs:complexType name="ArrayOfWSAPIBusinessFaultDetail">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="WSAPIBusinessFaultDetail" nillable="true" type="tns:WSAPIBusinessFaultDetail" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfWSAPIBusinessFaultDetail" nillable="true" type="tns:ArrayOfWSAPIBusinessFaultDetail" />
+  <xs:complexType name="WSAPIBusinessFaultDetail">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Message" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="DataName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="EntityKey" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="WSAPIBusinessFaultDetail" nillable="true" type="tns:WSAPIBusinessFaultDetail" />
+  <xs:complexType name="FileChunkSendRequest">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="FileChunk" nillable="true" type="tns:FileChunk" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="FileChunkSendRequest" nillable="true" type="tns:FileChunkSendRequest" />
+  <xs:complexType name="FileChunk">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="DocStageId" type="ser:guid" />
+      <xs:element minOccurs="0" name="Data" nillable="true" type="xs:base64Binary" />
+      <xs:element minOccurs="0" name="SequenceNumber" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="FileChunk" nillable="true" type="tns:FileChunk" />
+  <xs:complexType name="FileChunkSendResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="FileChunkId" type="ser:guid" />
+      <xs:element minOccurs="0" name="ChunksReceived" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="FileChunkSendResponse" nillable="true" type="tns:FileChunkSendResponse" />
+  <xs:complexType name="FileChunkEndRequest">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="DocStageId" type="ser:guid" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="FileChunkEndRequest" nillable="true" type="tns:FileChunkEndRequest" />
+  <xs:complexType name="FileChunkEndResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Doc360DocumentId" type="ser:guid" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="FileChunkEndResponse" nillable="true" type="tns:FileChunkEndResponse" />
+  <xs:complexType name="AMS360UrlResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="AMS360Url" nillable="true" type="xs:anyURI" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="AMS360UrlResponse" nillable="true" type="tns:AMS360UrlResponse" />
+  <xs:complexType name="LoginRequest">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="AgencyNo" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="LoginId" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Password" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="EmployeeCode" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="LoginRequest" nillable="true" type="tns:LoginRequest" />
+  <xs:complexType name="ValueListGetRequest">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ListName" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ValueListGetRequest" nillable="true" type="tns:ValueListGetRequest" />
+  <xs:complexType name="ValueListGetResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="AllowedValues" nillable="true" type="tns:ArrayOfAllowedValue" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ValueListGetResponse" nillable="true" type="tns:ValueListGetResponse" />
+  <xs:complexType name="ArrayOfAllowedValue">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="AllowedValue" nillable="true" type="tns:AllowedValue" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfAllowedValue" nillable="true" type="tns:ArrayOfAllowedValue" />
+  <xs:complexType name="AllowedValue">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Code" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Description" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="AllowedValue" nillable="true" type="tns:AllowedValue" />
+  <xs:complexType name="EmployeeInsertRequest">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Employee" nillable="true" type="tns:Employee" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="EmployeeInsertRequest" nillable="true" type="tns:EmployeeInsertRequest" />
+  <xs:complexType name="Employee">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Address" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="AddressLine2" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="BusinessAreaCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="BusinessExtension" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="BusinessPhone" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="City" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="EmergencyContactAreaCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="EmergencyContactExtension" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="EmergencyContactPhone" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="DateOfBirth" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="Doc360HotFolderLocation" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Email" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="EmergencyContactName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="EmployeeCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="EmployeeSupervisorCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="FaxAreaCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="FaxExtension" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="FaxPhone" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="FirstName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="FullTimeOrPartTime" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="HomeAreaCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="HomeExtension" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="HomePhone" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="LicensedAgent" nillable="true" type="xs:boolean" />
+      <xs:element minOccurs="0" name="AllowMemoCommissions" nillable="true" type="xs:boolean" />
+      <xs:element minOccurs="0" name="Executive" type="xs:boolean" />
+      <xs:element minOccurs="0" name="Representative" type="xs:boolean" />
+      <xs:element minOccurs="0" name="SalesCenterRepresentative" type="xs:boolean" />
+      <xs:element minOccurs="0" name="LastName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="LogDownloadSuspense" type="xs:boolean" />
+      <xs:element minOccurs="0" name="MiddleName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CellAreaCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CellExtension" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CellPhone" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="NationalProducerCode" nillable="true" type="xs:long" />
+      <xs:element minOccurs="0" name="PagerAreaCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PagerExtension" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PagerPhone" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Employee1099Category" nillable="true" type="xs:short" />
+      <xs:element minOccurs="0" name="Employee1099Type" nillable="true" type="xs:short" />
+      <xs:element minOccurs="0" name="ShortName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="State" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="EmployeeStatus" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="EmployeeTitle" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="TimeZone" type="xs:short" />
+      <xs:element minOccurs="0" name="YearEmployed" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ZipCode" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Employee" nillable="true" type="tns:Employee" />
+  <xs:complexType name="EmployeeWithBusinessUnits">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:Employee">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="BusinessUnitList" nillable="true" type="tns:ArrayOfBusinessUnit" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="EmployeeWithBusinessUnits" nillable="true" type="tns:EmployeeWithBusinessUnits" />
+  <xs:complexType name="ArrayOfBusinessUnit">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="BusinessUnit" nillable="true" type="tns:BusinessUnit" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfBusinessUnit" nillable="true" type="tns:ArrayOfBusinessUnit" />
+  <xs:complexType name="BusinessUnit">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="GLDivisionCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="GLBranchCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="GLDepartmentCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="GLGroupCode" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="BusinessUnit" nillable="true" type="tns:BusinessUnit" />
+  <xs:complexType name="EmployeeInsertResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="EmployeeCode" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="EmployeeInsertResponse" nillable="true" type="tns:EmployeeInsertResponse" />
+  <xs:complexType name="EmployeeUpdateRequest">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Employee" nillable="true" type="tns:Employee" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="EmployeeUpdateRequest" nillable="true" type="tns:EmployeeUpdateRequest" />
+  <xs:complexType name="EmployeeGetByCodeRequest">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="EmployeeCode" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="EmployeeGetByCodeRequest" nillable="true" type="tns:EmployeeGetByCodeRequest" />
+  <xs:complexType name="EmployeeGetByCodeResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Employee" nillable="true" type="tns:EmployeeWithBusinessUnits" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="EmployeeGetByCodeResponse" nillable="true" type="tns:EmployeeGetByCodeResponse" />
+  <xs:complexType name="EmployeeGetByShortNameRequest">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="EmployeeShortName" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="EmployeeGetByShortNameRequest" nillable="true" type="tns:EmployeeGetByShortNameRequest" />
+  <xs:complexType name="EmployeeGetByShortNameResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Employee" nillable="true" type="tns:EmployeeWithBusinessUnits" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="EmployeeGetByShortNameResponse" nillable="true" type="tns:EmployeeGetByShortNameResponse" />
+  <xs:complexType name="EmployeeGetListByLastNamePrefixRequest">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="EmployeeLastNamePrefix" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="EmployeeGetListByLastNamePrefixRequest" nillable="true" type="tns:EmployeeGetListByLastNamePrefixRequest" />
+  <xs:complexType name="EmployeeGetListByLastNamePrefixResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="EmployeeInfoList" nillable="true" type="tns:ArrayOfEmployeeInfo" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="EmployeeGetListByLastNamePrefixResponse" nillable="true" type="tns:EmployeeGetListByLastNamePrefixResponse" />
+  <xs:complexType name="ArrayOfEmployeeInfo">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="EmployeeInfo" nillable="true" type="tns:EmployeeInfo" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfEmployeeInfo" nillable="true" type="tns:ArrayOfEmployeeInfo" />
+  <xs:complexType name="EmployeeInfo">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="BusinessAreaCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="BusinessExtension" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="BusinessPhone" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="EmployeeCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="FaxAreaCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="FaxExtension" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="FaxPhone" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="FirstName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="HomeAreaCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="HomeExtension" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="HomePhone" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Executive" type="xs:boolean" />
+      <xs:element minOccurs="0" name="Representative" type="xs:boolean" />
+      <xs:element minOccurs="0" name="SalesCenterRepresentative" type="xs:boolean" />
+      <xs:element minOccurs="0" name="LastName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="MiddleName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CellAreaCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CellExtension" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CellPhone" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PagerAreaCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PagerExtension" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PagerPhone" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ShortName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="EmployeeStatus" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="EmergencyContactAreaCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="EmergencyContactExtension" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="EmergencyContactPhone" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="EmployeeInfo" nillable="true" type="tns:EmployeeInfo" />
+  <xs:complexType name="EmployeeGetListByTypeRequest">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="IncludeRepresentative" nillable="true" type="xs:boolean" />
+      <xs:element minOccurs="0" name="IncludeExecutive" nillable="true" type="xs:boolean" />
+      <xs:element minOccurs="0" name="IncludeSalesCenterRepresentative" nillable="true" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="EmployeeGetListByTypeRequest" nillable="true" type="tns:EmployeeGetListByTypeRequest" />
+  <xs:complexType name="EmployeeGetListByTypeResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="EmployeeInfoList" nillable="true" type="tns:ArrayOfEmployeeInfo" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="EmployeeGetListByTypeResponse" nillable="true" type="tns:EmployeeGetListByTypeResponse" />
+  <xs:complexType name="EmployeeGetListAllResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="EmployeeInfoList" nillable="true" type="tns:ArrayOfEmployeeInfo" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="EmployeeGetListAllResponse" nillable="true" type="tns:EmployeeGetListAllResponse" />
+  <xs:complexType name="GLDivisionGetByCodeRequest">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="GLDivisionCode" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="GLDivisionGetByCodeRequest" nillable="true" type="tns:GLDivisionGetByCodeRequest" />
+  <xs:complexType name="GLDivisionGetByCodeResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="GLDivision" nillable="true" type="tns:GLDivision" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="GLDivisionGetByCodeResponse" nillable="true" type="tns:GLDivisionGetByCodeResponse" />
+  <xs:complexType name="GLDivision">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="GLDivisionCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="IsInactive" type="xs:boolean" />
+      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ShortName" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="GLDivision" nillable="true" type="tns:GLDivision" />
+  <xs:complexType name="GLDivisionGetByShortNameRequest">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="GLDivisionShortName" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="GLDivisionGetByShortNameRequest" nillable="true" type="tns:GLDivisionGetByShortNameRequest" />
+  <xs:complexType name="GLDivisionGetByShortNameResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="GLDivision" nillable="true" type="tns:GLDivision" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="GLDivisionGetByShortNameResponse" nillable="true" type="tns:GLDivisionGetByShortNameResponse" />
+  <xs:complexType name="GLDivisionGetListByNamePrefixRequest">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="GLDivisionNamePrefix" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="GLDivisionGetListByNamePrefixRequest" nillable="true" type="tns:GLDivisionGetListByNamePrefixRequest" />
+  <xs:complexType name="GLDivisionGetListByNamePrefixResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="GLDivisionList" nillable="true" type="tns:ArrayOfGLDivision" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="GLDivisionGetListByNamePrefixResponse" nillable="true" type="tns:GLDivisionGetListByNamePrefixResponse" />
+  <xs:complexType name="ArrayOfGLDivision">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="GLDivision" nillable="true" type="tns:GLDivision" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfGLDivision" nillable="true" type="tns:ArrayOfGLDivision" />
+  <xs:complexType name="GLDivisionGetListAllResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="GLDivisionList" nillable="true" type="tns:ArrayOfGLDivision" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="GLDivisionGetListAllResponse" nillable="true" type="tns:GLDivisionGetListAllResponse" />
+  <xs:complexType name="GLBranchGetByCodeRequest">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="GLBranchCode" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="GLBranchGetByCodeRequest" nillable="true" type="tns:GLBranchGetByCodeRequest" />
+  <xs:complexType name="GLBranchGetByCodeResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="GLBranch" nillable="true" type="tns:GLBranch" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="GLBranchGetByCodeResponse" nillable="true" type="tns:GLBranchGetByCodeResponse" />
+  <xs:complexType name="GLBranch">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="GLBranchCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="IsInactive" type="xs:boolean" />
+      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ShortName" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="GLBranch" nillable="true" type="tns:GLBranch" />
+  <xs:complexType name="GLBranchGetByShortNameRequest">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="GLBranchShortName" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="GLBranchGetByShortNameRequest" nillable="true" type="tns:GLBranchGetByShortNameRequest" />
+  <xs:complexType name="GLBranchGetByShortNameResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="GLBranch" nillable="true" type="tns:GLBranch" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="GLBranchGetByShortNameResponse" nillable="true" type="tns:GLBranchGetByShortNameResponse" />
+  <xs:complexType name="GLBranchGetListByNamePrefixRequest">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="GLBranchNamePrefix" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="GLBranchGetListByNamePrefixRequest" nillable="true" type="tns:GLBranchGetListByNamePrefixRequest" />
+  <xs:complexType name="GLBranchGetListByNamePrefixResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="GLBranchList" nillable="true" type="tns:ArrayOfGLBranch" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="GLBranchGetListByNamePrefixResponse" nillable="true" type="tns:GLBranchGetListByNamePrefixResponse" />
+  <xs:complexType name="ArrayOfGLBranch">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="GLBranch" nillable="true" type="tns:GLBranch" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfGLBranch" nillable="true" type="tns:ArrayOfGLBranch" />
+  <xs:complexType name="GLBranchGetListAllResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="GLBranchList" nillable="true" type="tns:ArrayOfGLBranch" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="GLBranchGetListAllResponse" nillable="true" type="tns:GLBranchGetListAllResponse" />
+  <xs:complexType name="GLBranchGetListByGLDivisionCodeRequest">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="GLDivisionCode" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="GLBranchGetListByGLDivisionCodeRequest" nillable="true" type="tns:GLBranchGetListByGLDivisionCodeRequest" />
+  <xs:complexType name="GLBranchGetListByGLDivisionCodeResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="GLBranchList" nillable="true" type="tns:ArrayOfGLBranch" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="GLBranchGetListByGLDivisionCodeResponse" nillable="true" type="tns:GLBranchGetListByGLDivisionCodeResponse" />
+  <xs:complexType name="GLDepartmentGetByCodeRequest">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="GLDepartmentCode" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="GLDepartmentGetByCodeRequest" nillable="true" type="tns:GLDepartmentGetByCodeRequest" />
+  <xs:complexType name="GLDepartmentGetByCodeResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="GLDepartment" nillable="true" type="tns:GLDepartment" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="GLDepartmentGetByCodeResponse" nillable="true" type="tns:GLDepartmentGetByCodeResponse" />
+  <xs:complexType name="GLDepartment">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="GLDepartmentCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="IsInactive" type="xs:boolean" />
+      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ShortName" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="GLDepartment" nillable="true" type="tns:GLDepartment" />
+  <xs:complexType name="GLDepartmentGetByShortNameRequest">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="GLDepartmentShortName" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="GLDepartmentGetByShortNameRequest" nillable="true" type="tns:GLDepartmentGetByShortNameRequest" />
+  <xs:complexType name="GLDepartmentGetByShortNameResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="GLDepartment" nillable="true" type="tns:GLDepartment" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="GLDepartmentGetByShortNameResponse" nillable="true" type="tns:GLDepartmentGetByShortNameResponse" />
+  <xs:complexType name="GLDepartmentGetListByNamePrefixRequest">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="GLDepartmentNamePrefix" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="GLDepartmentGetListByNamePrefixRequest" nillable="true" type="tns:GLDepartmentGetListByNamePrefixRequest" />
+  <xs:complexType name="GLDepartmentGetListByNamePrefixResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="GLDepartmentList" nillable="true" type="tns:ArrayOfGLDepartment" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="GLDepartmentGetListByNamePrefixResponse" nillable="true" type="tns:GLDepartmentGetListByNamePrefixResponse" />
+  <xs:complexType name="ArrayOfGLDepartment">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="GLDepartment" nillable="true" type="tns:GLDepartment" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfGLDepartment" nillable="true" type="tns:ArrayOfGLDepartment" />
+  <xs:complexType name="GLDepartmentGetListAllResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="GLDepartmentList" nillable="true" type="tns:ArrayOfGLDepartment" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="GLDepartmentGetListAllResponse" nillable="true" type="tns:GLDepartmentGetListAllResponse" />
+  <xs:complexType name="GLDepartmentGetListByGLBranchCodeRequest">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="GLBranchCode" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="GLDepartmentGetListByGLBranchCodeRequest" nillable="true" type="tns:GLDepartmentGetListByGLBranchCodeRequest" />
+  <xs:complexType name="GLDepartmentGetListByGLBranchCodeResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="GLDepartmentList" nillable="true" type="tns:ArrayOfGLDepartment" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="GLDepartmentGetListByGLBranchCodeResponse" nillable="true" type="tns:GLDepartmentGetListByGLBranchCodeResponse" />
+  <xs:complexType name="GLGroupGetByCodeRequest">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="GLGroupCode" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="GLGroupGetByCodeRequest" nillable="true" type="tns:GLGroupGetByCodeRequest" />
+  <xs:complexType name="GLGroupGetByCodeResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="GLGroup" nillable="true" type="tns:GLGroup" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="GLGroupGetByCodeResponse" nillable="true" type="tns:GLGroupGetByCodeResponse" />
+  <xs:complexType name="GLGroup">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="GLGroupCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="IsInactive" type="xs:boolean" />
+      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ShortName" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="GLGroup" nillable="true" type="tns:GLGroup" />
+  <xs:complexType name="GLGroupGetByShortNameRequest">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="GLGroupShortName" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="GLGroupGetByShortNameRequest" nillable="true" type="tns:GLGroupGetByShortNameRequest" />
+  <xs:complexType name="GLGroupGetByShortNameResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="GLGroup" nillable="true" type="tns:GLGroup" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="GLGroupGetByShortNameResponse" nillable="true" type="tns:GLGroupGetByShortNameResponse" />
+  <xs:complexType name="GLGroupGetListByNamePrefixRequest">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="GLGroupNamePrefix" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="GLGroupGetListByNamePrefixRequest" nillable="true" type="tns:GLGroupGetListByNamePrefixRequest" />
+  <xs:complexType name="GLGroupGetListByNamePrefixResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="GLGroupList" nillable="true" type="tns:ArrayOfGLGroup" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="GLGroupGetListByNamePrefixResponse" nillable="true" type="tns:GLGroupGetListByNamePrefixResponse" />
+  <xs:complexType name="ArrayOfGLGroup">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="GLGroup" nillable="true" type="tns:GLGroup" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfGLGroup" nillable="true" type="tns:ArrayOfGLGroup" />
+  <xs:complexType name="GLGroupGetListAllResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="GLGroupList" nillable="true" type="tns:ArrayOfGLGroup" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="GLGroupGetListAllResponse" nillable="true" type="tns:GLGroupGetListAllResponse" />
+  <xs:complexType name="GLGroupGetListByGLDepartmentCodeRequest">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="GLDepartmentCode" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="GLGroupGetListByGLDepartmentCodeRequest" nillable="true" type="tns:GLGroupGetListByGLDepartmentCodeRequest" />
+  <xs:complexType name="GLGroupGetListByGLDepartmentCodeResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="GLGroupList" nillable="true" type="tns:ArrayOfGLGroup" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="GLGroupGetListByGLDepartmentCodeResponse" nillable="true" type="tns:GLGroupGetListByGLDepartmentCodeResponse" />
+  <xs:complexType name="BrokerGetListByLastNamePrefixRequest">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="BrokerLastNamePrefix" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="BrokerGetListByLastNamePrefixRequest" nillable="true" type="tns:BrokerGetListByLastNamePrefixRequest" />
+  <xs:complexType name="BrokerGetListByLastNamePrefixResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="BrokerInfoList" nillable="true" type="tns:ArrayOfBrokerInfo" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="BrokerGetListByLastNamePrefixResponse" nillable="true" type="tns:BrokerGetListByLastNamePrefixResponse" />
+  <xs:complexType name="ArrayOfBrokerInfo">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="BrokerInfo" nillable="true" type="tns:BrokerInfo" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfBrokerInfo" nillable="true" type="tns:ArrayOfBrokerInfo" />
+  <xs:complexType name="BrokerInfo">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="AddressLine1" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="AddressLine2" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="BrokerCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="City" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Contact" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="FirstName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="IsInactive" type="xs:boolean" />
+      <xs:element minOccurs="0" name="LastName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="MiddleName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="IsNetCommissionedBroker" nillable="true" type="xs:boolean" />
+      <xs:element minOccurs="0" name="ShortName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="State" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ZipCode" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="BrokerInfo" nillable="true" type="tns:BrokerInfo" />
+  <xs:complexType name="BrokerGetByCodeRequest">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="BrokerCode" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="BrokerGetByCodeRequest" nillable="true" type="tns:BrokerGetByCodeRequest" />
+  <xs:complexType name="BrokerGetByCodeResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Broker" nillable="true" type="tns:Broker" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="BrokerGetByCodeResponse" nillable="true" type="tns:BrokerGetByCodeResponse" />
+  <xs:complexType name="Broker">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="AddressLine1" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="AddressLine2" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="BrokerCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="City" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Contact" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="FirstName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="IsInactive" type="xs:boolean" />
+      <xs:element minOccurs="0" name="LastName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="MiddleName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="IsNetCommissionedBroker" nillable="true" type="xs:boolean" />
+      <xs:element minOccurs="0" name="ShortName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="State" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ZipCode" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Broker" nillable="true" type="tns:Broker" />
+  <xs:complexType name="BrokerGetByShortNameRequest">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="BrokerShortName" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="BrokerGetByShortNameRequest" nillable="true" type="tns:BrokerGetByShortNameRequest" />
+  <xs:complexType name="BrokerGetByShortNameResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Broker" nillable="true" type="tns:Broker" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="BrokerGetByShortNameResponse" nillable="true" type="tns:BrokerGetByShortNameResponse" />
+  <xs:complexType name="BrokerGetListAllResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="BrokerInfoList" nillable="true" type="tns:ArrayOfBrokerInfo" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="BrokerGetListAllResponse" nillable="true" type="tns:BrokerGetListAllResponse" />
+  <xs:complexType name="CompanyGetByCodeRequest">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="CompanyCode" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="CompanyGetByCodeRequest" nillable="true" type="tns:CompanyGetByCodeRequest" />
+  <xs:complexType name="CompanyGetByCodeResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Company" nillable="true" type="tns:Company" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="CompanyGetByCodeResponse" nillable="true" type="tns:CompanyGetByCodeResponse" />
+  <xs:complexType name="Company">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="CompanyCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="IsInactive" type="xs:boolean" />
+      <xs:element minOccurs="0" name="NAICCompanyCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ParentCompanyCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ShortName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CompanyType" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Company" nillable="true" type="tns:Company" />
+  <xs:complexType name="CompanyGetByShortNameRequest">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="CompanyShortName" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="CompanyGetByShortNameRequest" nillable="true" type="tns:CompanyGetByShortNameRequest" />
+  <xs:complexType name="CompanyGetByShortNameResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Company" nillable="true" type="tns:Company" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="CompanyGetByShortNameResponse" nillable="true" type="tns:CompanyGetByShortNameResponse" />
+  <xs:complexType name="CompanyGetListByNamePrefixRequest">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="CompanyNamePrefix" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="CompanyGetListByNamePrefixRequest" nillable="true" type="tns:CompanyGetListByNamePrefixRequest" />
+  <xs:complexType name="CompanyGetListByNamePrefixResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="CompanyInfoList" nillable="true" type="tns:ArrayOfCompanyInfo" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="CompanyGetListByNamePrefixResponse" nillable="true" type="tns:CompanyGetListByNamePrefixResponse" />
+  <xs:complexType name="ArrayOfCompanyInfo">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="CompanyInfo" nillable="true" type="tns:CompanyInfo" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfCompanyInfo" nillable="true" type="tns:ArrayOfCompanyInfo" />
+  <xs:complexType name="CompanyInfo">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="CompanyCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="IsInactive" type="xs:boolean" />
+      <xs:element minOccurs="0" name="NAICCompanyCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ParentCompanyCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ShortName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CompanyType" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="CompanyInfo" nillable="true" type="tns:CompanyInfo" />
+  <xs:complexType name="CompanyGetListByParentCompanyCodeRequest">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ParentCompanyCode" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="CompanyGetListByParentCompanyCodeRequest" nillable="true" type="tns:CompanyGetListByParentCompanyCodeRequest" />
+  <xs:complexType name="CompanyGetListByParentCompanyCodeResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="CompanyInfoList" nillable="true" type="tns:ArrayOfCompanyInfo" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="CompanyGetListByParentCompanyCodeResponse" nillable="true" type="tns:CompanyGetListByParentCompanyCodeResponse" />
+  <xs:complexType name="CompanyGetListByTypeRequest">
+    <xs:sequence>
+      <xs:element xmlns:q1="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="CompanyTypes" nillable="true" type="q1:ArrayOfstring" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="CompanyGetListByTypeRequest" nillable="true" type="tns:CompanyGetListByTypeRequest" />
+  <xs:complexType name="CompanyGetListByTypeResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="CompanyInfoList" nillable="true" type="tns:ArrayOfCompanyInfo" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="CompanyGetListByTypeResponse" nillable="true" type="tns:CompanyGetListByTypeResponse" />
+  <xs:complexType name="CompanyGetListAllResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="CompanyInfoList" nillable="true" type="tns:ArrayOfCompanyInfo" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="CompanyGetListAllResponse" nillable="true" type="tns:CompanyGetListAllResponse" />
+  <xs:complexType name="CustomerGetByIdRequest">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="CustomerId" type="ser:guid" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="CustomerGetByIdRequest" nillable="true" type="tns:CustomerGetByIdRequest" />
+  <xs:complexType name="CustomerGetByIdResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Customer" nillable="true" type="tns:Customer" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="CustomerGetByIdResponse" nillable="true" type="tns:CustomerGetByIdResponse" />
+  <xs:complexType name="Customer">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="IsActive" type="xs:boolean" />
+      <xs:element minOccurs="0" name="AddressLine1" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="AddressLine2" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CustomerNotationId" nillable="true" type="ser:guid" />
+      <xs:element minOccurs="0" name="BrokerCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="BusinessAreaCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="BusinessExtension" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="BusinessPhone" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="InBusinessSince" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="City" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="County" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="AccountRepCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="DateCustomerAdded" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="CustomerId" type="ser:guid" />
+      <xs:element minOccurs="0" name="CustomerNumber" type="xs:int" />
+      <xs:element minOccurs="0" name="DoingBusinessAs" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="DateOfBirth" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="DUNSNumber" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Email" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="FaxAreaCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="FaxExtension" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="FaxPhone" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="FederalTaxIdNumber" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="FirmName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="FirstName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="FormalSalutation" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="GLBranchCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="GLDepartmentCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="GLDivisionCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="GLGroupCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="InformalSalutation" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="IsBenefits" type="xs:boolean" />
+      <xs:element minOccurs="0" name="IsBrokersCustomer" type="xs:boolean" />
+      <xs:element minOccurs="0" name="IsCommercial" type="xs:boolean" />
+      <xs:element minOccurs="0" name="IsFinancial" type="xs:boolean" />
+      <xs:element minOccurs="0" name="IsHealth" type="xs:boolean" />
+      <xs:element minOccurs="0" name="IsLife" type="xs:boolean" />
+      <xs:element minOccurs="0" name="IsNonPropertyAndCasualty" type="xs:boolean" />
+      <xs:element minOccurs="0" name="IsPersonal" type="xs:boolean" />
+      <xs:element minOccurs="0" name="LastName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CellAreaCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CellExtension" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CellPhone" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="MaritalStatus" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="MiddleName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Occupation" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PagerAreaCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PagerExtension" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PagerPhone" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="AccountExecCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="HomeAreaCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="HomeExtension" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="HomePhone" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="NAICSCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="State" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CustomerType" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="BusinessEntityType" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="WebAddress" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ZipCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="IsSecured" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Customer" nillable="true" type="tns:Customer" />
+  <xs:complexType name="CustomerGetByNumberRequest">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="CustomerNumber" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="CustomerGetByNumberRequest" nillable="true" type="tns:CustomerGetByNumberRequest" />
+  <xs:complexType name="CustomerGetByNumberResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Customer" nillable="true" type="tns:Customer" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="CustomerGetByNumberResponse" nillable="true" type="tns:CustomerGetByNumberResponse" />
+  <xs:complexType name="CustomerUpdateRequest">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Customer" nillable="true" type="tns:Customer" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="CustomerUpdateRequest" nillable="true" type="tns:CustomerUpdateRequest" />
+  <xs:complexType name="CustomerInsertRequest">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Customer" nillable="true" type="tns:Customer" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="CustomerInsertRequest" nillable="true" type="tns:CustomerInsertRequest" />
+  <xs:complexType name="CustomerInsertResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="CustomerId" type="ser:guid" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="CustomerInsertResponse" nillable="true" type="tns:CustomerInsertResponse" />
+  <xs:complexType name="CustomerGetListByNamePrefixRequest">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="NamePrefix" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CustomerType" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="IsBrokersCustomer" nillable="true" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="CustomerGetListByNamePrefixRequest" nillable="true" type="tns:CustomerGetListByNamePrefixRequest" />
+  <xs:complexType name="CustomerGetListByNamePrefixResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="CustomerInfoList" nillable="true" type="tns:ArrayOfCustomerInfo" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="CustomerGetListByNamePrefixResponse" nillable="true" type="tns:CustomerGetListByNamePrefixResponse" />
+  <xs:complexType name="ArrayOfCustomerInfo">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="CustomerInfo" nillable="true" type="tns:CustomerInfo" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfCustomerInfo" nillable="true" type="tns:ArrayOfCustomerInfo" />
+  <xs:complexType name="CustomerInfo">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="IsActive" type="xs:boolean" />
+      <xs:element minOccurs="0" name="AddressLine1" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="AddressLine2" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="BrokerCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="City" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="AccountRepCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CustomerId" type="ser:guid" />
+      <xs:element minOccurs="0" name="CustomerNumber" type="xs:int" />
+      <xs:element minOccurs="0" name="DoingBusinessAs" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="FirmName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="FirstName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="IsBenefits" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="IsBrokersCustomer" type="xs:boolean" />
+      <xs:element minOccurs="0" name="IsCommercial" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="IsFinancial" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="IsHealth" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="IsLife" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="IsNonPropertyAndCasualty" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="IsPersonal" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="LastName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="MiddleName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="AccountExecCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="State" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CustomerType" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ZipCode" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="CustomerInfo" nillable="true" type="tns:CustomerInfo" />
+  <xs:complexType name="CustomerContactGetListRequest">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="CustomerId" type="ser:guid" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="CustomerContactGetListRequest" nillable="true" type="tns:CustomerContactGetListRequest" />
+  <xs:complexType name="CustomerContactGetListResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="CustomerContactList" nillable="true" type="tns:ArrayOfCustomerContact" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="CustomerContactGetListResponse" nillable="true" type="tns:CustomerContactGetListResponse" />
+  <xs:complexType name="ArrayOfCustomerContact">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="CustomerContact" nillable="true" type="tns:CustomerContact" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfCustomerContact" nillable="true" type="tns:ArrayOfCustomerContact" />
+  <xs:complexType name="CustomerContact">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="CustomerId" type="ser:guid" />
+      <xs:element minOccurs="0" name="CustomerContactId" type="ser:guid" />
+      <xs:element minOccurs="0" name="ContactName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Title" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="IsOfficer" type="xs:boolean" />
+      <xs:element minOccurs="0" name="IsDirector" type="xs:boolean" />
+      <xs:element minOccurs="0" name="Address1" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Address2" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="City" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="State" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Zip" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="County" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ResidenceAreaCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ResidencePhone" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ResidenceExt" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="BusinessAreaCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="BusinessPhone" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="BusinessExt" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="FaxAreaCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="FaxPhone" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="FaxExt" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="MobileAreaCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="MobilePhone" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="MobileExt" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PagerAreaCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PagerPhone" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PagerExt" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="EmailAddress" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="FormalSalutation" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="InformalSalutation" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="SortOrder" nillable="true" type="xs:short" />
+      <xs:element minOccurs="0" name="CustomerCenterDisplay" type="xs:boolean" />
+      <xs:element minOccurs="0" name="CustomerContactResponsibilityList" nillable="true" type="tns:ArrayOfCustomerContactResponsibility" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="CustomerContact" nillable="true" type="tns:CustomerContact" />
+  <xs:complexType name="ArrayOfCustomerContactResponsibility">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="CustomerContactResponsibility" nillable="true" type="tns:CustomerContactResponsibility" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfCustomerContactResponsibility" nillable="true" type="tns:ArrayOfCustomerContactResponsibility" />
+  <xs:complexType name="CustomerContactResponsibility">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="CustomerContactResponsibilityId" type="ser:guid" />
+      <xs:element minOccurs="0" name="ResponsibilityType" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="CustomerContactResponsibility" nillable="true" type="tns:CustomerContactResponsibility" />
+  <xs:complexType name="CustomerContactGetRequest">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="CustomerContactId" type="ser:guid" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="CustomerContactGetRequest" nillable="true" type="tns:CustomerContactGetRequest" />
+  <xs:complexType name="CustomerContactGetResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="CustomerContact" nillable="true" type="tns:CustomerContact" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="CustomerContactGetResponse" nillable="true" type="tns:CustomerContactGetResponse" />
+  <xs:complexType name="CustomerContactDeleteRequest">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="CustomerContactId" type="ser:guid" />
+      <xs:element minOccurs="0" name="CustomerId" type="ser:guid" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="CustomerContactDeleteRequest" nillable="true" type="tns:CustomerContactDeleteRequest" />
+  <xs:complexType name="CustomerContactUpdateRequest">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="CustomerContact" nillable="true" type="tns:CustomerContact" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="CustomerContactUpdateRequest" nillable="true" type="tns:CustomerContactUpdateRequest" />
+  <xs:complexType name="CustomerContactInsertRequest">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="CustomerContact" nillable="true" type="tns:CustomerContact" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="CustomerContactInsertRequest" nillable="true" type="tns:CustomerContactInsertRequest" />
+  <xs:complexType name="CustomerContactInsertResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="CustomerContactId" type="ser:guid" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="CustomerContactInsertResponse" nillable="true" type="tns:CustomerContactInsertResponse" />
+  <xs:complexType name="CustomerProfileAnswerGetListRequest">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="CustomerId" type="ser:guid" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="CustomerProfileAnswerGetListRequest" nillable="true" type="tns:CustomerProfileAnswerGetListRequest" />
+  <xs:complexType name="CustomerProfileAnswerGetListResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="CustomerProfileAnswerList" nillable="true" type="tns:ArrayOfCustomerProfileAnswer" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="CustomerProfileAnswerGetListResponse" nillable="true" type="tns:CustomerProfileAnswerGetListResponse" />
+  <xs:complexType name="ArrayOfCustomerProfileAnswer">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="CustomerProfileAnswer" nillable="true" type="tns:CustomerProfileAnswer" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfCustomerProfileAnswer" nillable="true" type="tns:ArrayOfCustomerProfileAnswer" />
+  <xs:complexType name="CustomerProfileAnswer">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="QuestionText" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="AnswerText" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="TypeOfBusiness" type="xs:short" />
+      <xs:element minOccurs="0" name="AnswerFormat" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="AnswerLength" type="xs:int" />
+      <xs:element minOccurs="0" name="CustomerId" type="ser:guid" />
+      <xs:element minOccurs="0" name="QuestionId" type="ser:guid" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="CustomerProfileAnswer" nillable="true" type="tns:CustomerProfileAnswer" />
+  <xs:complexType name="CustomerProfileAnswerGetRequest">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="CustomerId" type="ser:guid" />
+      <xs:element minOccurs="0" name="QuestionId" type="ser:guid" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="CustomerProfileAnswerGetRequest" nillable="true" type="tns:CustomerProfileAnswerGetRequest" />
+  <xs:complexType name="CustomerProfileAnswerGetResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="CustomerProfileAnswer" nillable="true" type="tns:CustomerProfileAnswer" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="CustomerProfileAnswerGetResponse" nillable="true" type="tns:CustomerProfileAnswerGetResponse" />
+  <xs:complexType name="CustomerProfileAnswerUpdateRequest">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="AnswerText" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CustomerId" type="ser:guid" />
+      <xs:element minOccurs="0" name="QuestionId" type="ser:guid" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="CustomerProfileAnswerUpdateRequest" nillable="true" type="tns:CustomerProfileAnswerUpdateRequest" />
+  <xs:complexType name="CustomerProfileAnswerDeleteRequest">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="CustomerId" type="ser:guid" />
+      <xs:element minOccurs="0" name="QuestionId" type="ser:guid" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="CustomerProfileAnswerDeleteRequest" nillable="true" type="tns:CustomerProfileAnswerDeleteRequest" />
+  <xs:complexType name="CustomerServicePersonnelGetListRequest">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="CustomerId" type="ser:guid" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="CustomerServicePersonnelGetListRequest" nillable="true" type="tns:CustomerServicePersonnelGetListRequest" />
+  <xs:complexType name="CustomerServicePersonnelGetListResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="CustomerServicePersonnelList" nillable="true" type="tns:ArrayOfCustomerServicePersonnel" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="CustomerServicePersonnelGetListResponse" nillable="true" type="tns:CustomerServicePersonnelGetListResponse" />
+  <xs:complexType name="ArrayOfCustomerServicePersonnel">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="CustomerServicePersonnel" nillable="true" type="tns:CustomerServicePersonnel" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfCustomerServicePersonnel" nillable="true" type="tns:ArrayOfCustomerServicePersonnel" />
+  <xs:complexType name="CustomerServicePersonnel">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="EmployeeCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="TypeOfEmployee" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="TypeOfBusiness" type="xs:int" />
+      <xs:element minOccurs="0" name="IsPrimary" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="CustomerServicePersonnel" nillable="true" type="tns:CustomerServicePersonnel" />
+  <xs:complexType name="CustomerServicePersonnelModifyListRequest">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="CustomerId" type="ser:guid" />
+      <xs:element minOccurs="0" name="ModifyList" nillable="true" type="tns:ArrayOfCustomerServicePersonnel" />
+      <xs:element minOccurs="0" name="DeleteList" nillable="true" type="tns:ArrayOfCustomerServicePersonnel" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="CustomerServicePersonnelModifyListRequest" nillable="true" type="tns:CustomerServicePersonnelModifyListRequest" />
+  <xs:complexType name="PlanTypeGetByCodeRequest">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="PlanCode" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="PlanTypeGetByCodeRequest" nillable="true" type="tns:PlanTypeGetByCodeRequest" />
+  <xs:complexType name="PlanTypeGetByCodeResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="PlanType" nillable="true" type="tns:PlanType" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="PlanTypeGetByCodeResponse" nillable="true" type="tns:PlanTypeGetByCodeResponse" />
+  <xs:complexType name="PlanType">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="PlanDescription" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="IsInactive" type="xs:boolean" />
+      <xs:element minOccurs="0" name="PlanCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PermanentFlag" type="xs:short" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="PlanType" nillable="true" type="tns:PlanType" />
+  <xs:complexType name="PlanTypeGetListByCompanyCodeRequest">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="CompanyCode" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="PlanTypeGetListByCompanyCodeRequest" nillable="true" type="tns:PlanTypeGetListByCompanyCodeRequest" />
+  <xs:complexType name="PlanTypeGetListByCompanyCodeResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="PlanTypeList" nillable="true" type="tns:ArrayOfPlanType" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="PlanTypeGetListByCompanyCodeResponse" nillable="true" type="tns:PlanTypeGetListByCompanyCodeResponse" />
+  <xs:complexType name="ArrayOfPlanType">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="PlanType" nillable="true" type="tns:PlanType" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfPlanType" nillable="true" type="tns:ArrayOfPlanType" />
+  <xs:complexType name="PlanTypeGetListAllResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="PlanTypeList" nillable="true" type="tns:ArrayOfPlanType" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="PlanTypeGetListAllResponse" nillable="true" type="tns:PlanTypeGetListAllResponse" />
+  <xs:complexType name="S1099GetListResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="S1099CategoryInfoList" nillable="true" type="tns:ArrayOfS1099CategoryInfo" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="S1099GetListResponse" nillable="true" type="tns:S1099GetListResponse" />
+  <xs:complexType name="ArrayOfS1099CategoryInfo">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="S1099CategoryInfo" nillable="true" type="tns:S1099CategoryInfo" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfS1099CategoryInfo" nillable="true" type="tns:ArrayOfS1099CategoryInfo" />
+  <xs:complexType name="S1099CategoryInfo">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="S1099Category" type="xs:short" />
+      <xs:element minOccurs="0" name="S1099CategoryDescription" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="S1099Types" nillable="true" type="tns:ArrayOfS1099TypeInfo" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="S1099CategoryInfo" nillable="true" type="tns:S1099CategoryInfo" />
+  <xs:complexType name="ArrayOfS1099TypeInfo">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="S1099TypeInfo" nillable="true" type="tns:S1099TypeInfo" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfS1099TypeInfo" nillable="true" type="tns:ArrayOfS1099TypeInfo" />
+  <xs:complexType name="S1099TypeInfo">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="S1099Type" type="xs:short" />
+      <xs:element minOccurs="0" name="S1099TypeDescription" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="S1099TypeInfo" nillable="true" type="tns:S1099TypeInfo" />
+  <xs:complexType name="PolicyServicePersonnelGetListRequest">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="PolicyId" type="ser:guid" />
+      <xs:element minOccurs="0" name="TransactionEffectiveDate" type="xs:dateTime" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="PolicyServicePersonnelGetListRequest" nillable="true" type="tns:PolicyServicePersonnelGetListRequest" />
+  <xs:complexType name="PolicyServicePersonnelListResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="PolicyServicePersonnelList" nillable="true" type="tns:ArrayOfPolicyPersonnel" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="PolicyServicePersonnelListResponse" nillable="true" type="tns:PolicyServicePersonnelListResponse" />
+  <xs:complexType name="ArrayOfPolicyPersonnel">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="PolicyPersonnel" nillable="true" type="tns:PolicyPersonnel" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfPolicyPersonnel" nillable="true" type="tns:ArrayOfPolicyPersonnel" />
+  <xs:complexType name="PolicyPersonnel">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="EmployeeCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="EmployeeType" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="IsPrimary" nillable="true" type="xs:boolean" />
+      <xs:element minOccurs="0" name="PolicyId" type="ser:guid" />
+      <xs:element minOccurs="0" name="PolicyPersonnelId" type="ser:guid" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="PolicyPersonnel" nillable="true" type="tns:PolicyPersonnel" />
+  <xs:complexType name="PolicyServicePersonnelModifyListRequest">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="PolicyId" type="ser:guid" />
+      <xs:element minOccurs="0" name="ModifyList" nillable="true" type="tns:ArrayOfPolicyPersonnel" />
+      <xs:element minOccurs="0" name="DeleteList" nillable="true" type="tns:ArrayOfPolicyPersonnel" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="PolicyServicePersonnelModifyListRequest" nillable="true" type="tns:PolicyServicePersonnelModifyListRequest" />
+  <xs:complexType name="PolicyGetRequest">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="PolicyId" type="ser:guid" />
+      <xs:element minOccurs="0" name="TransactionEffectiveDate" nillable="true" type="xs:dateTime" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="PolicyGetRequest" nillable="true" type="tns:PolicyGetRequest" />
+  <xs:complexType name="PolicyGetResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Policy" nillable="true" type="tns:Policy" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="PolicyGetResponse" nillable="true" type="tns:PolicyGetResponse" />
+  <xs:complexType name="Policy">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="CustomerId" type="ser:guid" />
+      <xs:element minOccurs="0" name="PolicyId" type="ser:guid" />
+      <xs:element minOccurs="0" name="PolicyNumber" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="TypeOfBusiness" type="xs:short" />
+      <xs:element minOccurs="0" name="PolicyType" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PolicyTypeOfBusiness" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="WritingCompanyCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="AccountExecCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="AccountRepCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="BrokerCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PolicyEffectiveDate" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="PolicyExpirationDate" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="IsContinuous" type="xs:boolean" />
+      <xs:element minOccurs="0" name="PolicyStatus" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="GLDivisionCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="GLDepartmentCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="GLBranchCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="GLGroupCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="BillMethod" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="IsNewPolicy" nillable="true" type="xs:boolean" />
+      <xs:element minOccurs="0" name="FullTermPremium" type="xs:decimal" />
+      <xs:element minOccurs="0" name="IsFinanced" nillable="true" type="xs:boolean" />
+      <xs:element minOccurs="0" name="CompanyType" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="IsMultiEntity" nillable="true" type="xs:boolean" />
+      <xs:element minOccurs="0" name="PolicySubType" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Description" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="LineOfBusinessList" nillable="true" type="tns:ArrayOfPolicyLineOfBusiness" />
+      <xs:element minOccurs="0" name="PersonnelList" nillable="true" type="tns:ArrayOfPolicyPersonnel" />
+      <xs:element minOccurs="0" name="TransactionList" nillable="true" type="tns:ArrayOfPolicyTransaction" />
+      <xs:element minOccurs="0" name="TransactionPremiumList" nillable="true" type="tns:ArrayOfPolicyTransactionPremium" />
+      <xs:element minOccurs="0" name="PolicyNotationId" nillable="true" type="ser:guid" />
+      <xs:element minOccurs="0" name="PriorPolicy" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PriorPolicyId" nillable="true" type="ser:guid" />
+      <xs:element minOccurs="0" name="SourcePolicyId" nillable="true" type="ser:guid" />
+      <xs:element minOccurs="0" name="IsExcludeDelete" nillable="true" type="xs:boolean" />
+      <xs:element minOccurs="0" name="NationalProducerCode" nillable="true" type="xs:long" />
+      <xs:element minOccurs="0" name="CompanyCustomerNumber" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Policy" nillable="true" type="tns:Policy" />
+  <xs:complexType name="ArrayOfPolicyLineOfBusiness">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="PolicyLineOfBusiness" nillable="true" type="tns:PolicyLineOfBusiness" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfPolicyLineOfBusiness" nillable="true" type="tns:ArrayOfPolicyLineOfBusiness" />
+  <xs:complexType name="PolicyLineOfBusiness">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="LineOfBusinessId" type="ser:guid" />
+      <xs:element minOccurs="0" name="PolicyLineOfBusiness" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="SortOrderNumber" nillable="true" type="xs:short" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="PolicyLineOfBusiness" nillable="true" type="tns:PolicyLineOfBusiness" />
+  <xs:complexType name="ArrayOfPolicyTransaction">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="PolicyTransaction" nillable="true" type="tns:PolicyTransaction" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfPolicyTransaction" nillable="true" type="tns:ArrayOfPolicyTransaction" />
+  <xs:complexType name="PolicyTransaction">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="PolicyId" type="ser:guid" />
+      <xs:element minOccurs="0" name="TransactionEffectiveDate" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="TransactionType" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="TransactionReasonCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="TransactionDescription" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="BillMethod" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="PolicyTransaction" nillable="true" type="tns:PolicyTransaction" />
+  <xs:complexType name="ArrayOfPolicyTransactionPremium">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="PolicyTransactionPremium" nillable="true" type="tns:PolicyTransactionPremium" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfPolicyTransactionPremium" nillable="true" type="tns:ArrayOfPolicyTransactionPremium" />
+  <xs:complexType name="PolicyTransactionPremium">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="PolicyId" type="ser:guid" />
+      <xs:element minOccurs="0" name="TransactionEffectiveDate" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="PolicyTransactionPremiumId" type="ser:guid" />
+      <xs:element minOccurs="0" name="LineOfBusiness" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PlanType" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="WritingCompanyCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Description" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Premium" type="xs:decimal" />
+      <xs:element minOccurs="0" name="BilliedPremium" type="xs:decimal" />
+      <xs:element minOccurs="0" name="WrittenPremium" type="xs:decimal" />
+      <xs:element minOccurs="0" name="FullTermPremium" type="xs:decimal" />
+      <xs:element minOccurs="0" name="IncludePremium" type="xs:boolean" />
+      <xs:element minOccurs="0" name="HowBilled" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="IsSuspended" type="xs:boolean" />
+      <xs:element minOccurs="0" name="Reconciled" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="PolicyTransactionPremium" nillable="true" type="tns:PolicyTransactionPremium" />
+  <xs:complexType name="PolicyGetListByCustomerIdRequest">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="CustomerId" type="ser:guid" />
+      <xs:element xmlns:q2="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="PolicyStatus" nillable="true" type="q2:ArrayOfstring" />
+      <xs:element minOccurs="0" name="IncludeMultiEntity" nillable="true" type="xs:boolean" />
+      <xs:element minOccurs="0" name="IncludeAccountingSubType" nillable="true" type="xs:boolean" />
+      <xs:element minOccurs="0" name="IncludeSubmissionSubType" nillable="true" type="xs:boolean" />
+      <xs:element minOccurs="0" name="IncludePolicySubType" nillable="true" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="PolicyGetListByCustomerIdRequest" nillable="true" type="tns:PolicyGetListByCustomerIdRequest" />
+  <xs:complexType name="PolicyGetListByCustomerIdResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="PolicyInfoList" nillable="true" type="tns:ArrayOfPolicyInfo" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="PolicyGetListByCustomerIdResponse" nillable="true" type="tns:PolicyGetListByCustomerIdResponse" />
+  <xs:complexType name="ArrayOfPolicyInfo">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="PolicyInfo" nillable="true" type="tns:PolicyInfo" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfPolicyInfo" nillable="true" type="tns:ArrayOfPolicyInfo" />
+  <xs:complexType name="PolicyInfo">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="CompanyType" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CustomerId" type="ser:guid" />
+      <xs:element minOccurs="0" name="IsMultiEntity" type="xs:boolean" />
+      <xs:element minOccurs="0" name="PolicyEffectiveDate" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="PolicyExpirationDate" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="PolicyId" type="ser:guid" />
+      <xs:element minOccurs="0" name="PolicyNumber" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PolicySubType" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PolicyTypeOfBusiness" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PolicyStatus" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="WritingCompanyCode" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="PolicyInfo" nillable="true" type="tns:PolicyInfo" />
+  <xs:complexType name="PolicyGetListByCustomerNumberRequest">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="CustomerNumber" nillable="true" type="xs:string" />
+      <xs:element xmlns:q3="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="PolicyStatus" nillable="true" type="q3:ArrayOfstring" />
+      <xs:element minOccurs="0" name="IncludeMultiEntity" nillable="true" type="xs:boolean" />
+      <xs:element minOccurs="0" name="IncludeAccountingSubType" nillable="true" type="xs:boolean" />
+      <xs:element minOccurs="0" name="IncludeSubmissionSubType" nillable="true" type="xs:boolean" />
+      <xs:element minOccurs="0" name="IncludePolicySubType" nillable="true" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="PolicyGetListByCustomerNumberRequest" nillable="true" type="tns:PolicyGetListByCustomerNumberRequest" />
+  <xs:complexType name="PolicyGetListByCustomerNumberResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="PolicyInfoList" nillable="true" type="tns:ArrayOfPolicyInfo" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="PolicyGetListByCustomerNumberResponse" nillable="true" type="tns:PolicyGetListByCustomerNumberResponse" />
+  <xs:complexType name="PolicyGetListByPolicyNumberRequest">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="PolicyNumber" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PolicyEffectiveDate" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="PolicyExpirationDate" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="IncludeMultiEntity" nillable="true" type="xs:boolean" />
+      <xs:element minOccurs="0" name="IncludeAccountingSubType" nillable="true" type="xs:boolean" />
+      <xs:element minOccurs="0" name="IncludeSubmissionSubType" nillable="true" type="xs:boolean" />
+      <xs:element minOccurs="0" name="IncludePolicySubType" nillable="true" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="PolicyGetListByPolicyNumberRequest" nillable="true" type="tns:PolicyGetListByPolicyNumberRequest" />
+  <xs:complexType name="PolicyGetListByPolicyNumberResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="PolicyInfoList" nillable="true" type="tns:ArrayOfPolicyInfo" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="PolicyGetListByPolicyNumberResponse" nillable="true" type="tns:PolicyGetListByPolicyNumberResponse" />
+  <xs:complexType name="PolicyGetListByPolicyNumberAndDateRequest">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="PolicyNumber" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="InEffectOnDate" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="IncludeMultiEntity" nillable="true" type="xs:boolean" />
+      <xs:element minOccurs="0" name="IncludeAccountingSubType" nillable="true" type="xs:boolean" />
+      <xs:element minOccurs="0" name="IncludeSubmissionSubType" nillable="true" type="xs:boolean" />
+      <xs:element minOccurs="0" name="IncludePolicySubType" nillable="true" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="PolicyGetListByPolicyNumberAndDateRequest" nillable="true" type="tns:PolicyGetListByPolicyNumberAndDateRequest" />
+  <xs:complexType name="PolicyGetListByPolicyNumberAndDateResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="PolicyInfoList" nillable="true" type="tns:ArrayOfPolicyInfo" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="PolicyGetListByPolicyNumberAndDateResponse" nillable="true" type="tns:PolicyGetListByPolicyNumberAndDateResponse" />
+  <xs:complexType name="PolicyCorrectRequest">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Policy" nillable="true" type="tns:Policy" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="PolicyCorrectRequest" nillable="true" type="tns:PolicyCorrectRequest" />
+  <xs:complexType name="PolicyDeleteRequest">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="PolicyId" type="ser:guid" />
+      <xs:element minOccurs="0" name="CustomerId" type="ser:guid" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="PolicyDeleteRequest" nillable="true" type="tns:PolicyDeleteRequest" />
+  <xs:complexType name="PolicyInsertRequest">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Policy" nillable="true" type="tns:Policy" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="PolicyInsertRequest" nillable="true" type="tns:PolicyInsertRequest" />
+  <xs:complexType name="PolicyInsertResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="PolicyId" type="ser:guid" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="PolicyInsertResponse" nillable="true" type="tns:PolicyInsertResponse" />
+  <xs:complexType name="PolicyRenewRequest">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Policy" nillable="true" type="tns:Policy" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="PolicyRenewRequest" nillable="true" type="tns:PolicyRenewRequest" />
+  <xs:complexType name="PolicyRenewResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="PolicyId" type="ser:guid" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="PolicyRenewResponse" nillable="true" type="tns:PolicyRenewResponse" />
+  <xs:complexType name="PolicyTransactionPremiumGetRequest">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="PolicyTransactionPremiumId" type="ser:guid" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="PolicyTransactionPremiumGetRequest" nillable="true" type="tns:PolicyTransactionPremiumGetRequest" />
+  <xs:complexType name="PolicyTransactionPremiumGetResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="PolicyTransactionPremium" nillable="true" type="tns:PolicyTransactionPremium" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="PolicyTransactionPremiumGetResponse" nillable="true" type="tns:PolicyTransactionPremiumGetResponse" />
+  <xs:complexType name="PolicyTransactionPremiumUpdateRequest">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="PolicyTransactionPremium" nillable="true" type="tns:PolicyTransactionPremium" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="PolicyTransactionPremiumUpdateRequest" nillable="true" type="tns:PolicyTransactionPremiumUpdateRequest" />
+  <xs:complexType name="PolicyTransactionPremiumDeleteRequest">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="PolicyTransactionPremiumId" type="ser:guid" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="PolicyTransactionPremiumDeleteRequest" nillable="true" type="tns:PolicyTransactionPremiumDeleteRequest" />
+  <xs:complexType name="PolicyTransactionPremiumInsertRequest">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="PolicyTransactionPremium" nillable="true" type="tns:PolicyTransactionPremium" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="PolicyTransactionPremiumInsertRequest" nillable="true" type="tns:PolicyTransactionPremiumInsertRequest" />
+  <xs:complexType name="PolicyTransactionPremiumInsertResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="PolicyTransactionPremiumId" type="ser:guid" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="PolicyTransactionPremiumInsertResponse" nillable="true" type="tns:PolicyTransactionPremiumInsertResponse" />
+  <xs:complexType name="PolicyTransactionPremiumGetListForPolicyRequest">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="PolicyId" type="ser:guid" />
+      <xs:element minOccurs="0" name="TransactionEffectiveDate" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="FilterIncludeCorrected" nillable="true" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="PolicyTransactionPremiumGetListForPolicyRequest" nillable="true" type="tns:PolicyTransactionPremiumGetListForPolicyRequest" />
+  <xs:complexType name="PolicyTransactionPremiumGetListForPolicyResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="PolicyTransactionPremium" nillable="true" type="tns:ArrayOfPolicyTransactionPremium" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="PolicyTransactionPremiumGetListForPolicyResponse" nillable="true" type="tns:PolicyTransactionPremiumGetListForPolicyResponse" />
+  <xs:complexType name="PolicyGetRemarkRequest">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="PolicyId" type="ser:guid" />
+      <xs:element minOccurs="0" name="TransactionEffectiveDate" type="xs:dateTime" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="PolicyGetRemarkRequest" nillable="true" type="tns:PolicyGetRemarkRequest" />
+  <xs:complexType name="PolicyGetRemarkResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="PolicyRemark" nillable="true" type="tns:PolicyRemark" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="PolicyGetRemarkResponse" nillable="true" type="tns:PolicyGetRemarkResponse" />
+  <xs:complexType name="PolicyRemark">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="PolicyId" type="ser:guid" />
+      <xs:element minOccurs="0" name="RemarkId" type="ser:guid" />
+      <xs:element minOccurs="0" name="RemarkText" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="TransactionEffectiveDate" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="IsSaved" nillable="true" type="xs:boolean" />
+      <xs:element minOccurs="0" name="IsUploaded" nillable="true" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="PolicyRemark" nillable="true" type="tns:PolicyRemark" />
+  <xs:complexType name="PolicyInsertRemarkRequest">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="PolicyRemark" nillable="true" type="tns:PolicyRemark" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="PolicyInsertRemarkRequest" nillable="true" type="tns:PolicyInsertRemarkRequest" />
+  <xs:complexType name="PolicyInsertRemarkResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="RemarkId" type="ser:guid" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="PolicyInsertRemarkResponse" nillable="true" type="tns:PolicyInsertRemarkResponse" />
+  <xs:complexType name="PolicyDeleteRemarkRequest">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="PolicyId" type="ser:guid" />
+      <xs:element minOccurs="0" name="RemarkId" type="ser:guid" />
+      <xs:element minOccurs="0" name="TransactionEffectiveDate" type="xs:dateTime" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="PolicyDeleteRemarkRequest" nillable="true" type="tns:PolicyDeleteRemarkRequest" />
+  <xs:complexType name="PolicyUpdateRemarkRequest">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="PolicyRemark" nillable="true" type="tns:PolicyRemark" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="PolicyUpdateRemarkRequest" nillable="true" type="tns:PolicyUpdateRemarkRequest" />
+  <xs:complexType name="PolicyContactGetRequest">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="PolicyId" type="ser:guid" />
+      <xs:element minOccurs="0" name="LineOfBusinessId" type="ser:guid" />
+      <xs:element minOccurs="0" name="PolicyContactId" type="ser:guid" />
+      <xs:element minOccurs="0" name="EffectiveDate" type="xs:dateTime" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="PolicyContactGetRequest" nillable="true" type="tns:PolicyContactGetRequest" />
+  <xs:complexType name="PolicyContactGetResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="PolicyContact" nillable="true" type="tns:PolicyContact" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="PolicyContactGetResponse" nillable="true" type="tns:PolicyContactGetResponse" />
+  <xs:complexType name="PolicyContact">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="PolicyId" type="ser:guid" />
+      <xs:element minOccurs="0" name="LineOfBusinessId" type="ser:guid" />
+      <xs:element minOccurs="0" name="PolicyContactId" type="ser:guid" />
+      <xs:element minOccurs="0" name="EffectiveDate" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="Status" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="AttachId" type="ser:guid" />
+      <xs:element minOccurs="0" name="AttachType" type="xs:short" />
+      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Responsibility" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Description" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="AreaCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Phone" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Ext" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Address1" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Address2" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="City" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="State" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ZipCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="County" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="RefNo" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Title" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="FormalSalutation" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="InformalSalutation" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ResidenceAreaCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ResidencePhone" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ResidenceExt" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="FaxAreaCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="FaxPhone" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="FaxExt" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="MobileAreaCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="MobilePhone" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="MobileExt" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PagerAreaCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PagerPhone" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PagerExt" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="EMail" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="PolicyContact" nillable="true" type="tns:PolicyContact" />
+  <xs:complexType name="PolicyContactGetListRequest">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="PolicyId" type="ser:guid" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="PolicyContactGetListRequest" nillable="true" type="tns:PolicyContactGetListRequest" />
+  <xs:complexType name="PolicyContactGetListResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="PolicyContactList" nillable="true" type="tns:ArrayOfPolicyContact" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="PolicyContactGetListResponse" nillable="true" type="tns:PolicyContactGetListResponse" />
+  <xs:complexType name="ArrayOfPolicyContact">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="PolicyContact" nillable="true" type="tns:PolicyContact" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfPolicyContact" nillable="true" type="tns:ArrayOfPolicyContact" />
+  <xs:complexType name="PolicyContactInsertRequest">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="PolicyContact" nillable="true" type="tns:PolicyContact" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="PolicyContactInsertRequest" nillable="true" type="tns:PolicyContactInsertRequest" />
+  <xs:complexType name="PolicyContactInsertResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="PolicyContactId" type="ser:guid" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="PolicyContactInsertResponse" nillable="true" type="tns:PolicyContactInsertResponse" />
+  <xs:complexType name="PolicyContactUpdateRequest">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="PolicyContact" nillable="true" type="tns:PolicyContact" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="PolicyContactUpdateRequest" nillable="true" type="tns:PolicyContactUpdateRequest" />
+  <xs:complexType name="PolicyContactDeleteRequest">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="PolicyId" type="ser:guid" />
+      <xs:element minOccurs="0" name="LineOfBusinessId" type="ser:guid" />
+      <xs:element minOccurs="0" name="PolicyContactId" type="ser:guid" />
+      <xs:element minOccurs="0" name="EffectiveDate" type="xs:dateTime" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="PolicyContactDeleteRequest" nillable="true" type="tns:PolicyContactDeleteRequest" />
+  <xs:complexType name="VendorGetByCodeRequest">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="VendorCode" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="VendorGetByCodeRequest" nillable="true" type="tns:VendorGetByCodeRequest" />
+  <xs:complexType name="VendorGetByCodeResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Vendor" nillable="true" type="tns:Vendor" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="VendorGetByCodeResponse" nillable="true" type="tns:VendorGetByCodeResponse" />
+  <xs:complexType name="Vendor">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Description" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="EmployerIdentificationNumber" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="FirstName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="GLNumber" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="IsCompany" type="xs:boolean" />
+      <xs:element minOccurs="0" name="IsInactive" type="xs:boolean" />
+      <xs:element minOccurs="0" name="LastName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="MiddleName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ShortName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="VendorCode" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Vendor" nillable="true" type="tns:Vendor" />
+  <xs:complexType name="VendorGetListByIsCompanyRequest">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="IsCompany" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="VendorGetListByIsCompanyRequest" nillable="true" type="tns:VendorGetListByIsCompanyRequest" />
+  <xs:complexType name="VendorGetListByIsCompanyResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="VendorInfoList" nillable="true" type="tns:ArrayOfVendorInfo" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="VendorGetListByIsCompanyResponse" nillable="true" type="tns:VendorGetListByIsCompanyResponse" />
+  <xs:complexType name="ArrayOfVendorInfo">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="VendorInfo" nillable="true" type="tns:VendorInfo" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfVendorInfo" nillable="true" type="tns:ArrayOfVendorInfo" />
+  <xs:complexType name="VendorInfo">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Description" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="EmployerIdentificationNumber" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="FirstName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="GLNumber" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="IsCompany" type="xs:boolean" />
+      <xs:element minOccurs="0" name="IsInactive" type="xs:boolean" />
+      <xs:element minOccurs="0" name="LastName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="MiddleName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ShortName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="VendorCode" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="VendorInfo" nillable="true" type="tns:VendorInfo" />
+  <xs:complexType name="VendorGetListByLastNamePrefixRequest">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="VendorLastNamePrefix" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="VendorGetListByLastNamePrefixRequest" nillable="true" type="tns:VendorGetListByLastNamePrefixRequest" />
+  <xs:complexType name="VendorGetListByLastNamePrefixResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="VendorInfoList" nillable="true" type="tns:ArrayOfVendorInfo" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="VendorGetListByLastNamePrefixResponse" nillable="true" type="tns:VendorGetListByLastNamePrefixResponse" />
+  <xs:complexType name="VendorGetListAllResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="VendorInfoList" nillable="true" type="tns:ArrayOfVendorInfo" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="VendorGetListAllResponse" nillable="true" type="tns:VendorGetListAllResponse" />
+  <xs:complexType name="VendorInvoiceGetByIdRequest">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="VendorInvoiceId" type="ser:guid" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="VendorInvoiceGetByIdRequest" nillable="true" type="tns:VendorInvoiceGetByIdRequest" />
+  <xs:complexType name="VendorInvoiceGetByIdResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="VendorInvoice" nillable="true" type="tns:VendorInvoice" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="VendorInvoiceGetByIdResponse" nillable="true" type="tns:VendorInvoiceGetByIdResponse" />
+  <xs:complexType name="VendorInvoice">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="BankCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Description" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="GLDivisionCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="DatePosted" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="Status" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="VendorCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="VendorDueDate" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="VendorPaidDate" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="VendorInvoiceDate" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="VendorInvoiceId" type="ser:guid" />
+      <xs:element minOccurs="0" name="VendorInvoiceNumber" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="VendorInvoicePayAmount" type="xs:decimal" />
+      <xs:element minOccurs="0" name="VendorInvoiceTotalAmount" type="xs:decimal" />
+      <xs:element minOccurs="0" name="VendorInvoiceTemplateId" nillable="true" type="ser:guid" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="VendorInvoice" nillable="true" type="tns:VendorInvoice" />
+  <xs:complexType name="VendorInvoiceGetListByVendorRequest">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="VendorCode" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="VendorInvoiceGetListByVendorRequest" nillable="true" type="tns:VendorInvoiceGetListByVendorRequest" />
+  <xs:complexType name="VendorInvoiceGetListByVendorResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="VendorInvoiceInfoList" nillable="true" type="tns:ArrayOfVendorInvoiceInfo" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="VendorInvoiceGetListByVendorResponse" nillable="true" type="tns:VendorInvoiceGetListByVendorResponse" />
+  <xs:complexType name="ArrayOfVendorInvoiceInfo">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="VendorInvoiceInfo" nillable="true" type="tns:VendorInvoiceInfo" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfVendorInvoiceInfo" nillable="true" type="tns:ArrayOfVendorInvoiceInfo" />
+  <xs:complexType name="VendorInvoiceInfo">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Actions" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="BankCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="BankName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Description" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="GLDivCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="GLDivName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="IsAttachments" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PostDate" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="SourceRefNo" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Status" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="InvStatus" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="VendorCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="VenDueDate" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="VenPayDate" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="VInvDate" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="VInvId" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="VInvNo" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="VInvPayAmt" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="VInvTotAmt" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="VITId" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="VendorInvoiceInfo" nillable="true" type="tns:VendorInvoiceInfo" />
+  <xs:complexType name="BankGetByCodeRequest">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="BankCode" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="BankGetByCodeRequest" nillable="true" type="tns:BankGetByCodeRequest" />
+  <xs:complexType name="BankGetByCodeResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Bank" nillable="true" type="tns:Bank" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="BankGetByCodeResponse" nillable="true" type="tns:BankGetByCodeResponse" />
+  <xs:complexType name="Bank">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="BankCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="BankName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ShortName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="BankAccountNumber" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="RoutingNumber" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="GLNumber" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="AccountType" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="GLDivisionCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="IsInactive" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Bank" nillable="true" type="tns:Bank" />
+  <xs:complexType name="BankGetListByAccountTypeRequest">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="AccountType" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="BankGetListByAccountTypeRequest" nillable="true" type="tns:BankGetListByAccountTypeRequest" />
+  <xs:complexType name="BankGetListByAccountTypeResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="BankInfoList" nillable="true" type="tns:ArrayOfBankInfo" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="BankGetListByAccountTypeResponse" nillable="true" type="tns:BankGetListByAccountTypeResponse" />
+  <xs:complexType name="ArrayOfBankInfo">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="BankInfo" nillable="true" type="tns:BankInfo" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfBankInfo" nillable="true" type="tns:ArrayOfBankInfo" />
+  <xs:complexType name="BankInfo">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="BankCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="BankName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ShortName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="BankAccountNumber" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="RoutingNumber" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="GLNumber" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="AccountType" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="GLDivisionCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="IsInactive" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="BankInfo" nillable="true" type="tns:BankInfo" />
+  <xs:complexType name="BankGetListByBankNamePrefixRequest">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="BankNamePrefix" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="BankGetListByBankNamePrefixRequest" nillable="true" type="tns:BankGetListByBankNamePrefixRequest" />
+  <xs:complexType name="BankGetListByBankNamePrefixResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="BankInfoList" nillable="true" type="tns:ArrayOfBankInfo" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="BankGetListByBankNamePrefixResponse" nillable="true" type="tns:BankGetListByBankNamePrefixResponse" />
+  <xs:complexType name="BankGetListAllResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="BankInfoList" nillable="true" type="tns:ArrayOfBankInfo" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="BankGetListAllResponse" nillable="true" type="tns:BankGetListAllResponse" />
+  <xs:complexType name="ClaimGetByIdRequest">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ClaimId" type="ser:guid" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ClaimGetByIdRequest" nillable="true" type="tns:ClaimGetByIdRequest" />
+  <xs:complexType name="ClaimGetByIdResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Claim" nillable="true" type="tns:Claim" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ClaimGetByIdResponse" nillable="true" type="tns:ClaimGetByIdResponse" />
+  <xs:complexType name="Claim">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ClaimId" type="ser:guid" />
+      <xs:element minOccurs="0" name="CauseOfLoss" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ClaimNo" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ClaimStatus" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Description" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="LineOfBusiness" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="LineOfBusinessId" type="ser:guid" />
+      <xs:element minOccurs="0" name="LossDate" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="PolicyEffectiveDate" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="PolicyEndorsementDate" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="PolicyExpirationDate" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="PolicyId" type="ser:guid" />
+      <xs:element minOccurs="0" name="PolicyNumber" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ReportedDate" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="ClaimContactList" nillable="true" type="tns:ArrayOfClaimContact" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Claim" nillable="true" type="tns:Claim" />
+  <xs:complexType name="ArrayOfClaimContact">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ClaimContact" nillable="true" type="tns:ClaimContact" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfClaimContact" nillable="true" type="tns:ArrayOfClaimContact" />
+  <xs:complexType name="ClaimContact">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ClaimId" type="ser:guid" />
+      <xs:element minOccurs="0" name="ClaimContactId" type="ser:guid" />
+      <xs:element minOccurs="0" name="NameClaimContact" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Address1ClaimContact" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Address2ClaimContact" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CityClaimContact" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ResAreaCodeClaimContact" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ResPhoneClaimContact" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ResExtClaimContact" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="BusAreaCodeClaimContact" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="BusPhoneClaimContact" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="BusExtClaimContact" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="FaxAreaCodeClaimContact" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="FaxPhoneClaimContact" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="FaxExtClaimContact" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="WhereToContactClaimContact" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="WhenToContactClaimContact" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="EmailClaimContact" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ContactTypeClaimContact" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="StateClaimContact" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ZipCodeClaimContact" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ClaimContact" nillable="true" type="tns:ClaimContact" />
+  <xs:complexType name="ClaimGetListByCustomerIdRequest">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="CustomerId" type="ser:guid" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ClaimGetListByCustomerIdRequest" nillable="true" type="tns:ClaimGetListByCustomerIdRequest" />
+  <xs:complexType name="ClaimGetListByCustomerIdResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ClaimInfoList" nillable="true" type="tns:ArrayOfClaimInfo" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ClaimGetListByCustomerIdResponse" nillable="true" type="tns:ClaimGetListByCustomerIdResponse" />
+  <xs:complexType name="ArrayOfClaimInfo">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ClaimInfo" nillable="true" type="tns:ClaimInfo" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfClaimInfo" nillable="true" type="tns:ArrayOfClaimInfo" />
+  <xs:complexType name="ClaimInfo">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ClaimId" type="ser:guid" />
+      <xs:element minOccurs="0" name="CauseOfLoss" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ClaimNo" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ClaimStatus" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CustId" type="ser:guid" />
+      <xs:element minOccurs="0" name="Description" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="LineOfBusiness" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="LineOfBusinessId" type="ser:guid" />
+      <xs:element minOccurs="0" name="LossDate" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="PolicyEffectiveDate" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="PolicyEndorsementDate" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="PolicyExpirationDate" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="PolicyId" type="ser:guid" />
+      <xs:element minOccurs="0" name="PolicyNumber" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ReportedDate" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="ClaimContactList" nillable="true" type="tns:ArrayOfClaimContactInfo" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ClaimInfo" nillable="true" type="tns:ClaimInfo" />
+  <xs:complexType name="ArrayOfClaimContactInfo">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ClaimContactInfo" nillable="true" type="tns:ClaimContactInfo" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfClaimContactInfo" nillable="true" type="tns:ArrayOfClaimContactInfo" />
+  <xs:complexType name="ClaimContactInfo">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ClaimContactId" type="ser:guid" />
+      <xs:element minOccurs="0" name="NameClaimContact" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ClaimContactInfo" nillable="true" type="tns:ClaimContactInfo" />
+  <xs:complexType name="ClaimGetListByPolicyIdRequest">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="PolicyId" type="ser:guid" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ClaimGetListByPolicyIdRequest" nillable="true" type="tns:ClaimGetListByPolicyIdRequest" />
+  <xs:complexType name="ClaimGetListByPolicyIdResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ClaimInfoList" nillable="true" type="tns:ArrayOfClaimInfo" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ClaimGetListByPolicyIdResponse" nillable="true" type="tns:ClaimGetListByPolicyIdResponse" />
+  <xs:complexType name="AgencyInfoGetResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="AgencyInfo" nillable="true" type="tns:AgencyInfo" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="AgencyInfoGetResponse" nillable="true" type="tns:AgencyInfoGetResponse" />
+  <xs:complexType name="AgencyInfo">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Address" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Address2" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="AgencyName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="AllHoursAreaCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="AllHoursExtension" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="AllHoursPhone" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="BusinessAreaCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="BusinessExtension" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="BusinessPhone" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="City" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Email" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="FaxAreaCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="FaxExtension" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="FaxPhone" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="State" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ZipCode" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="AgencyInfo" nillable="true" type="tns:AgencyInfo" />
+  <xs:complexType name="PersonalNoteGetListRequest">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="DateFrom" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="DateTo" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="PurgeDateFrom" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="PurgeDateTo" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="IncludeOnlyAttachments" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="PersonalNoteGetListRequest" nillable="true" type="tns:PersonalNoteGetListRequest" />
+  <xs:complexType name="PersonalNoteGetListResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="UserNoteList" nillable="true" type="tns:ArrayOfPersonalNote" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="PersonalNoteGetListResponse" nillable="true" type="tns:PersonalNoteGetListResponse" />
+  <xs:complexType name="ArrayOfPersonalNote">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="PersonalNote" nillable="true" type="tns:PersonalNote" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfPersonalNote" nillable="true" type="tns:ArrayOfPersonalNote" />
+  <xs:complexType name="PersonalNote">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="EmployeeCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="NoteText" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="NoteDate" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="NoteId" type="ser:guid" />
+      <xs:element minOccurs="0" name="PurgeDate" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="Priority" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Attachment" type="xs:boolean" />
+      <xs:element minOccurs="0" name="IsSticky" type="xs:boolean" />
+      <xs:element minOccurs="0" name="IsNoteTruncated" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="PersonalNote" nillable="true" type="tns:PersonalNote" />
+  <xs:complexType name="PersonalNoteGetListAllResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="UserNoteList" nillable="true" type="tns:ArrayOfPersonalNote" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="PersonalNoteGetListAllResponse" nillable="true" type="tns:PersonalNoteGetListAllResponse" />
+  <xs:complexType name="PersonalNoteInsertRequest">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="UserNote" nillable="true" type="tns:PersonalNote" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="PersonalNoteInsertRequest" nillable="true" type="tns:PersonalNoteInsertRequest" />
+  <xs:complexType name="PersonalNoteInsertResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="NoteId" type="ser:guid" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="PersonalNoteInsertResponse" nillable="true" type="tns:PersonalNoteInsertResponse" />
+  <xs:complexType name="NoteTextGetRequest">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="NoteId" type="ser:guid" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="NoteTextGetRequest" nillable="true" type="tns:NoteTextGetRequest" />
+  <xs:complexType name="NoteTextUpdateRequest">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="NoteId" type="ser:guid" />
+      <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/System.IO" minOccurs="0" name="Note" nillable="true" type="q4:Stream" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="NoteTextUpdateRequest" nillable="true" type="tns:NoteTextUpdateRequest" />
+  <xs:complexType name="CustomerNoteInsertRequest">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="CustomerNote" nillable="true" type="tns:CustomerNote" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="CustomerNoteInsertRequest" nillable="true" type="tns:CustomerNoteInsertRequest" />
+  <xs:complexType name="CustomerNote">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="CustomerId" type="ser:guid" />
+      <xs:element minOccurs="0" name="NoteText" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="NoteDate" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="NoteId" type="ser:guid" />
+      <xs:element minOccurs="0" name="PurgeDate" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="Priority" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Attachment" type="xs:boolean" />
+      <xs:element minOccurs="0" name="IsSticky" type="xs:boolean" />
+      <xs:element minOccurs="0" name="ClaimId" nillable="true" type="ser:guid" />
+      <xs:element minOccurs="0" name="PolicyId" nillable="true" type="ser:guid" />
+      <xs:element minOccurs="0" name="IsNoteTruncated" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="CustomerNote" nillable="true" type="tns:CustomerNote" />
+  <xs:complexType name="CustomerNoteInsertResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="NoteId" type="ser:guid" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="CustomerNoteInsertResponse" nillable="true" type="tns:CustomerNoteInsertResponse" />
+  <xs:complexType name="CommonNoteInsertRequest">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="CommonNote" nillable="true" type="tns:CommonNote" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="CommonNoteInsertRequest" nillable="true" type="tns:CommonNoteInsertRequest" />
+  <xs:complexType name="CommonNote">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="NoteTypeId" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="NoteType" type="xs:short" />
+      <xs:element minOccurs="0" name="NoteText" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="NoteDate" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="NoteId" type="ser:guid" />
+      <xs:element minOccurs="0" name="PurgeDate" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="Priority" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="CommonNote" nillable="true" type="tns:CommonNote" />
+  <xs:complexType name="CommonNoteInsertResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="NoteId" type="ser:guid" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="CommonNoteInsertResponse" nillable="true" type="tns:CommonNoteInsertResponse" />
+  <xs:complexType name="LineOfBusinessGetByCodeRequest">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="LineOfBusinessCode" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="LineOfBusinessGetByCodeRequest" nillable="true" type="tns:LineOfBusinessGetByCodeRequest" />
+  <xs:complexType name="LineOfBusinessGetByCodeResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="LineOfBusiness" nillable="true" type="tns:LineOfBusiness" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="LineOfBusinessGetByCodeResponse" nillable="true" type="tns:LineOfBusinessGetByCodeResponse" />
+  <xs:complexType name="LineOfBusiness">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Description" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="IncomeGroup" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="IsInactive" type="xs:boolean" />
+      <xs:element minOccurs="0" name="LineOfBusinessCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="TypeOfBusinessCode" type="xs:short" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="LineOfBusiness" nillable="true" type="tns:LineOfBusiness" />
+  <xs:complexType name="LineOfBusinessGetListRequest">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="TypeOfBusinessCode" nillable="true" type="xs:short" />
+      <xs:element minOccurs="0" name="IncomeGroup" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="LineOfBusinessGetListRequest" nillable="true" type="tns:LineOfBusinessGetListRequest" />
+  <xs:complexType name="LineOfBusinessGetListResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="LineOfBusinessInfoList" nillable="true" type="tns:ArrayOfLineOfBusinessInfo" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="LineOfBusinessGetListResponse" nillable="true" type="tns:LineOfBusinessGetListResponse" />
+  <xs:complexType name="ArrayOfLineOfBusinessInfo">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="LineOfBusinessInfo" nillable="true" type="tns:LineOfBusinessInfo" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfLineOfBusinessInfo" nillable="true" type="tns:ArrayOfLineOfBusinessInfo" />
+  <xs:complexType name="LineOfBusinessInfo">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Description" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="IncomeGroup" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="IsInactive" type="xs:boolean" />
+      <xs:element minOccurs="0" name="LineOfBusinessCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="TypeOfBusinessCode" type="xs:short" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="LineOfBusinessInfo" nillable="true" type="tns:LineOfBusinessInfo" />
+  <xs:complexType name="LineOfBusinessGetListAllResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="LineOfBusinessInfoList" nillable="true" type="tns:ArrayOfLineOfBusinessInfo" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="LineOfBusinessGetListAllResponse" nillable="true" type="tns:LineOfBusinessGetListAllResponse" />
+  <xs:complexType name="CustomerSuspenseInsertRequest">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Suspense" nillable="true" type="tns:CustomerSuspense" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="CustomerSuspenseInsertRequest" nillable="true" type="tns:CustomerSuspenseInsertRequest" />
+  <xs:complexType name="CustomerSuspense">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="SuspenseId" type="ser:guid" />
+      <xs:element minOccurs="0" name="CustomerId" type="ser:guid" />
+      <xs:element minOccurs="0" name="PolicyId" nillable="true" type="ser:guid" />
+      <xs:element minOccurs="0" name="PolicyEffectiveDate" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="CompanyCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ClaimId" nillable="true" type="ser:guid" />
+      <xs:element minOccurs="0" name="SuspenseAction" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="InitiatedDate" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="InitiatedByEmployeeCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="AssignedToEmployeeCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="DueDate" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="TimesRescheduled" nillable="true" type="xs:unsignedByte" />
+      <xs:element minOccurs="0" name="Description" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Priority" type="xs:short" />
+      <xs:element minOccurs="0" name="IsCompleted" type="xs:boolean" />
+      <xs:element minOccurs="0" name="CompletedBy" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CompletedDate" nillable="true" type="xs:dateTime" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="CustomerSuspense" nillable="true" type="tns:CustomerSuspense" />
+  <xs:complexType name="CustomerSuspenseInsertResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="SuspenseId" type="ser:guid" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="CustomerSuspenseInsertResponse" nillable="true" type="tns:CustomerSuspenseInsertResponse" />
+  <xs:complexType name="CustomerSuspenseUpdateRequest">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Suspense" nillable="true" type="tns:CustomerSuspense" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="CustomerSuspenseUpdateRequest" nillable="true" type="tns:CustomerSuspenseUpdateRequest" />
+  <xs:complexType name="CustomerSuspenseDeleteRequest">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="SuspenseId" type="ser:guid" />
+      <xs:element minOccurs="0" name="CustomerId" type="ser:guid" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="CustomerSuspenseDeleteRequest" nillable="true" type="tns:CustomerSuspenseDeleteRequest" />
+  <xs:complexType name="CustomerSuspenseGetBySuspenseIdRequest">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="SuspenseId" type="ser:guid" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="CustomerSuspenseGetBySuspenseIdRequest" nillable="true" type="tns:CustomerSuspenseGetBySuspenseIdRequest" />
+  <xs:complexType name="CustomerSuspenseGetBySuspenseIdResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Suspense" nillable="true" type="tns:CustomerSuspense" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="CustomerSuspenseGetBySuspenseIdResponse" nillable="true" type="tns:CustomerSuspenseGetBySuspenseIdResponse" />
+  <xs:complexType name="CustomerSuspenseGetListByCustomerIdRequest">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="CustomerId" type="ser:guid" />
+      <xs:element minOccurs="0" name="IsComplete" nillable="true" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="CustomerSuspenseGetListByCustomerIdRequest" nillable="true" type="tns:CustomerSuspenseGetListByCustomerIdRequest" />
+  <xs:complexType name="CustomerSuspenseGetListByCustomerIdResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="SuspenseList" nillable="true" type="tns:ArrayOfCustomerSuspenseInfo" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="CustomerSuspenseGetListByCustomerIdResponse" nillable="true" type="tns:CustomerSuspenseGetListByCustomerIdResponse" />
+  <xs:complexType name="ArrayOfCustomerSuspenseInfo">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="CustomerSuspenseInfo" nillable="true" type="tns:CustomerSuspenseInfo" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfCustomerSuspenseInfo" nillable="true" type="tns:ArrayOfCustomerSuspenseInfo" />
+  <xs:complexType name="CustomerSuspenseInfo">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="SuspenseId" type="ser:guid" />
+      <xs:element minOccurs="0" name="CustomerId" type="ser:guid" />
+      <xs:element minOccurs="0" name="PolicyId" nillable="true" type="ser:guid" />
+      <xs:element minOccurs="0" name="PolicyEffectiveDate" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="CompanyCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ClaimId" nillable="true" type="ser:guid" />
+      <xs:element minOccurs="0" name="SuspenseAction" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="InitiatedDate" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="InitiatedByEmployeeCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="AssignedToEmployeeCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="DueDate" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="TimesRescheduled" nillable="true" type="xs:unsignedByte" />
+      <xs:element minOccurs="0" name="Description" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Priority" type="xs:short" />
+      <xs:element minOccurs="0" name="IsCompleted" type="xs:boolean" />
+      <xs:element minOccurs="0" name="CompletedBy" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CompletedDate" nillable="true" type="xs:dateTime" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="CustomerSuspenseInfo" nillable="true" type="tns:CustomerSuspenseInfo" />
+  <xs:complexType name="CommonSuspenseInsertRequest">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="CommonSuspense" nillable="true" type="tns:CommonSuspense" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="CommonSuspenseInsertRequest" nillable="true" type="tns:CommonSuspenseInsertRequest" />
+  <xs:complexType name="CommonSuspense">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="SuspenseId" type="ser:guid" />
+      <xs:element minOccurs="0" name="SuspenseTypeId" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="SuspenseType" type="xs:short" />
+      <xs:element minOccurs="0" name="SuspenseAction" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="InitiatedDate" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="InitiatedByEmployeeCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="AssignedToEmployeeCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="DueDate" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="TimesRescheduled" nillable="true" type="xs:unsignedByte" />
+      <xs:element minOccurs="0" name="Description" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Priority" type="xs:short" />
+      <xs:element minOccurs="0" name="IsCompleted" type="xs:boolean" />
+      <xs:element minOccurs="0" name="CompletedBy" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CompletedDate" nillable="true" type="xs:dateTime" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="CommonSuspense" nillable="true" type="tns:CommonSuspense" />
+  <xs:complexType name="CommonSuspenseInsertResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="SuspenseId" type="ser:guid" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="CommonSuspenseInsertResponse" nillable="true" type="tns:CommonSuspenseInsertResponse" />
+  <xs:complexType name="CommonSuspenseUpdateRequest">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="CommonSuspense" nillable="true" type="tns:CommonSuspense" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="CommonSuspenseUpdateRequest" nillable="true" type="tns:CommonSuspenseUpdateRequest" />
+  <xs:complexType name="CommonSuspenseDeleteRequest">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="SuspenseId" type="ser:guid" />
+      <xs:element minOccurs="0" name="SuspenseTypeId" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="SuspenseType" type="xs:short" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="CommonSuspenseDeleteRequest" nillable="true" type="tns:CommonSuspenseDeleteRequest" />
+  <xs:complexType name="CommonSuspenseGetBySuspenseIdRequest">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="SuspenseId" type="ser:guid" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="CommonSuspenseGetBySuspenseIdRequest" nillable="true" type="tns:CommonSuspenseGetBySuspenseIdRequest" />
+  <xs:complexType name="CommonSuspenseGetBySuspenseIdResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="CommonSuspense" nillable="true" type="tns:CommonSuspense" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="CommonSuspenseGetBySuspenseIdResponse" nillable="true" type="tns:CommonSuspenseGetBySuspenseIdResponse" />
+  <xs:complexType name="CommonSuspenseGetListByEntityIdRequest">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="EntityId" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="IsCompleted" nillable="true" type="xs:boolean" />
+      <xs:element minOccurs="0" name="EntityType" type="xs:short" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="CommonSuspenseGetListByEntityIdRequest" nillable="true" type="tns:CommonSuspenseGetListByEntityIdRequest" />
+  <xs:complexType name="CommonSuspenseGetListByEntityIdResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="CommonSuspenseList" nillable="true" type="tns:ArrayOfCommonSuspenseInfo" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="CommonSuspenseGetListByEntityIdResponse" nillable="true" type="tns:CommonSuspenseGetListByEntityIdResponse" />
+  <xs:complexType name="ArrayOfCommonSuspenseInfo">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="CommonSuspenseInfo" nillable="true" type="tns:CommonSuspenseInfo" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfCommonSuspenseInfo" nillable="true" type="tns:ArrayOfCommonSuspenseInfo" />
+  <xs:complexType name="CommonSuspenseInfo">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="SuspenseId" type="ser:guid" />
+      <xs:element minOccurs="0" name="SuspenseTypeId" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="SuspenseType" type="xs:short" />
+      <xs:element minOccurs="0" name="SuspenseAction" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="InitiatedDate" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="InitiatedByEmployeeCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="AssignedToEmployeeCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="DueDate" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="TimesRescheduled" nillable="true" type="xs:unsignedByte" />
+      <xs:element minOccurs="0" name="Description" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Priority" type="xs:short" />
+      <xs:element minOccurs="0" name="IsCompleted" type="xs:boolean" />
+      <xs:element minOccurs="0" name="CompletedBy" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CompletedDate" nillable="true" type="xs:dateTime" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="CommonSuspenseInfo" nillable="true" type="tns:CommonSuspenseInfo" />
+  <xs:complexType name="CustomerActivityInsertRequest">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="CustomerActivity" nillable="true" type="tns:CustomerActivity" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="CustomerActivityInsertRequest" nillable="true" type="tns:CustomerActivityInsertRequest" />
+  <xs:complexType name="CustomerActivity">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ActivityDate" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="ActivityTime" type="ser:duration" />
+      <xs:element minOccurs="0" name="ClaimId" nillable="true" type="ser:guid" />
+      <xs:element minOccurs="0" name="CompanyCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Description" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CustomerId" type="ser:guid" />
+      <xs:element minOccurs="0" name="ActivityAction" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="EmployeeCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="TransactionEffectiveDate" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="PolicyId" nillable="true" type="ser:guid" />
+      <xs:element minOccurs="0" name="ActivityId" type="ser:guid" />
+      <xs:element minOccurs="0" name="Attachments" nillable="true" type="tns:ArrayOfDoc360Document" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="CustomerActivity" nillable="true" type="tns:CustomerActivity" />
+  <xs:complexType name="ArrayOfDoc360Document">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Doc360Document" nillable="true" type="tns:Doc360Document" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfDoc360Document" nillable="true" type="tns:ArrayOfDoc360Document" />
+  <xs:complexType name="Doc360Document">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Doc360DocumentId" nillable="true" type="ser:guid" />
+      <xs:element minOccurs="0" name="Description" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="StorageLocation" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="DocumentType" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="SecurityClass" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Index1" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Index2" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Comments" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="SourceFileName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ReceivedDateTime" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="ProcessedDateTime" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="TotalBytes" nillable="true" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Doc360Document" nillable="true" type="tns:Doc360Document" />
+  <xs:complexType name="CustomerActivityInsertResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ActivityId" type="ser:guid" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="CustomerActivityInsertResponse" nillable="true" type="tns:CustomerActivityInsertResponse" />
+  <xs:complexType name="CommonActivityInsertRequest">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="CommonActivity" nillable="true" type="tns:Activity" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="CommonActivityInsertRequest" nillable="true" type="tns:CommonActivityInsertRequest" />
+  <xs:complexType name="Activity">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ActivityAction" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ActivityDate" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="ActivityTypeId" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ActivityTime" type="ser:duration" />
+      <xs:element minOccurs="0" name="ActivityType" type="xs:short" />
+      <xs:element minOccurs="0" name="Description" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="EmployeeCode" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Activity" nillable="true" type="tns:Activity" />
+  <xs:complexType name="CommonActivityInsertResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ActivityId" type="ser:guid" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="CommonActivityInsertResponse" nillable="true" type="tns:CommonActivityInsertResponse" />
+  <xs:complexType name="SearchByPhoneNumberRequest">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="PhoneNumber" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="SearchByPhoneNumberRequest" nillable="true" type="tns:SearchByPhoneNumberRequest" />
+  <xs:complexType name="SearchByPhoneNumberResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="SearchResultInfoList" nillable="true" type="tns:ArrayOfSearchResultInfo" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="SearchByPhoneNumberResponse" nillable="true" type="tns:SearchByPhoneNumberResponse" />
+  <xs:complexType name="ArrayOfSearchResultInfo">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="SearchResultInfo" nillable="true" type="tns:SearchResultInfo" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfSearchResultInfo" nillable="true" type="tns:ArrayOfSearchResultInfo" />
+  <xs:complexType name="SearchResultInfo">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="EntityId" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="EntityType" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Description" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="SearchResultText" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="SearchResultInfo" nillable="true" type="tns:SearchResultInfo" />
+</xs:schema>
