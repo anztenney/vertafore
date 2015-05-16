@@ -1,8 +1,0 @@
-﻿<UserControl x:Class="WPFClientApp.Controls.ucAnimation"
-    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    Height="1" Width="1">
-    <Grid>
-            
-    </Grid>
-</UserControl>
