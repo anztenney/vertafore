@@ -1,0 +1,25 @@
+﻿<Application x:Class="WPFClientApp.App"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:converters="clr-namespace:WPFClientApp.Converters"
+    StartupUri="MainWindow.xaml">
+    <Application.Resources>
+    	<ResourceDictionary>
+    		<ResourceDictionary.MergedDictionaries>
+    			<ResourceDictionary Source="Skins/Black/BlackResources.xaml"/>
+    		</ResourceDictionary.MergedDictionaries>
+    		<Style x:Key="LabelStyle" TargetType="{x:Type Label}">
+    			<Setter Property="HorizontalAlignment" Value="Right"/>
+                <Setter Property="Foreground" Value="{DynamicResource InputFontColor}"/>
+    		</Style>
+    		<Style x:Key="EmployeeItemLabel" TargetType="{x:Type Label}">            
+    			<Setter Property="HorizontalAlignment" Value="Right"/>
+    			<Setter Property="FontSize" Value="10pt"/>
+    			<Setter Property="FontFamily" Value="Consolas"/>
+    		</Style>
+    		<converters:DisplayNameConverter x:Key="DisplayNameConverterKey"/>
+            <converters:DateTimeConverter x:Key="DateTimeConverterKey"/>
+            <converters:MaxStringConverter x:Key="MaxStringConverterKey"/>
+    	</ResourceDictionary>
+    </Application.Resources>
+</Application>

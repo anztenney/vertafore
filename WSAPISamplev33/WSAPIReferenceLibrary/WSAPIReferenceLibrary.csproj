@@ -1,0 +1,473 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{3EBAAB75-934E-421A-8BAB-F8592CF4A9D4}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>WSAPIReferenceLibrary</RootNamespace>
+    <AssemblyName>WSAPIReferenceLibrary</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Runtime.Serialization">
+      <RequiredTargetFramework>3.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.ServiceModel">
+      <RequiredTargetFramework>3.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Xml.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data.DataSetExtensions">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Helpers\BankHelpers.cs" />
+    <Compile Include="Helpers\BrokerHelpers.cs" />
+    <Compile Include="Helpers\BusinessUnitsHelpers.cs" />
+    <Compile Include="Helpers\CompanyHelpers.cs" />
+    <Compile Include="Helpers\CustomerHelpers.cs" />
+    <Compile Include="Helpers\EmployeeHelpers.cs" />
+    <Compile Include="Helpers\LineOfBusinessHelpers.cs" />
+    <Compile Include="Helpers\S1099Helpers.cs" />
+    <Compile Include="Helpers\UserNoteHelpers.cs" />
+    <Compile Include="Helpers\ValueListHelpers.cs" />
+    <Compile Include="Helpers\VendorHelpers.cs" />
+    <Compile Include="Helpers\WSHelper.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Service References\WSAPIService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 3.1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="Service References\WSAPIService\WSAPIReferenceLibrary.WSAPIService.AgencyInfoGetResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WSAPIService\WSAPIReferenceLibrary.WSAPIService.AMS360UrlResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WSAPIService\WSAPIReferenceLibrary.WSAPIService.BankGetByCodeResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WSAPIService\WSAPIReferenceLibrary.WSAPIService.BankGetListAllResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WSAPIService\WSAPIReferenceLibrary.WSAPIService.BankGetListByAccountTypeResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WSAPIService\WSAPIReferenceLibrary.WSAPIService.BankGetListByBankNamePrefixResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WSAPIService\WSAPIReferenceLibrary.WSAPIService.BrokerGetByCodeResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WSAPIService\WSAPIReferenceLibrary.WSAPIService.BrokerGetByShortNameResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WSAPIService\WSAPIReferenceLibrary.WSAPIService.BrokerGetListAllResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WSAPIService\WSAPIReferenceLibrary.WSAPIService.BrokerGetListByLastNamePrefixResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WSAPIService\WSAPIReferenceLibrary.WSAPIService.ClaimGetByIdResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WSAPIService\WSAPIReferenceLibrary.WSAPIService.ClaimGetListByCustomerIdResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WSAPIService\WSAPIReferenceLibrary.WSAPIService.ClaimGetListByPolicyIdResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WSAPIService\WSAPIReferenceLibrary.WSAPIService.CommonActivityInsertResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WSAPIService\WSAPIReferenceLibrary.WSAPIService.CommonNoteInsertResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WSAPIService\WSAPIReferenceLibrary.WSAPIService.CommonSuspenseGetBySuspenseIdResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WSAPIService\WSAPIReferenceLibrary.WSAPIService.CommonSuspenseGetListByEntityIdResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WSAPIService\WSAPIReferenceLibrary.WSAPIService.CommonSuspenseInsertResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WSAPIService\WSAPIReferenceLibrary.WSAPIService.CompanyGetByCodeResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WSAPIService\WSAPIReferenceLibrary.WSAPIService.CompanyGetByShortNameResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WSAPIService\WSAPIReferenceLibrary.WSAPIService.CompanyGetListAllResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WSAPIService\WSAPIReferenceLibrary.WSAPIService.CompanyGetListByNamePrefixResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WSAPIService\WSAPIReferenceLibrary.WSAPIService.CompanyGetListByParentCompanyCodeResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WSAPIService\WSAPIReferenceLibrary.WSAPIService.CompanyGetListByTypeResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WSAPIService\WSAPIReferenceLibrary.WSAPIService.CustomerActivityInsertResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WSAPIService\WSAPIReferenceLibrary.WSAPIService.CustomerContactGetListResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WSAPIService\WSAPIReferenceLibrary.WSAPIService.CustomerContactGetResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WSAPIService\WSAPIReferenceLibrary.WSAPIService.CustomerContactInsertResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WSAPIService\WSAPIReferenceLibrary.WSAPIService.CustomerGetByIdResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WSAPIService\WSAPIReferenceLibrary.WSAPIService.CustomerGetByNumberResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WSAPIService\WSAPIReferenceLibrary.WSAPIService.CustomerGetListByNamePrefixResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WSAPIService\WSAPIReferenceLibrary.WSAPIService.CustomerInsertResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WSAPIService\WSAPIReferenceLibrary.WSAPIService.CustomerNoteInsertResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WSAPIService\WSAPIReferenceLibrary.WSAPIService.CustomerProfileAnswerGetListResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WSAPIService\WSAPIReferenceLibrary.WSAPIService.CustomerProfileAnswerGetResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WSAPIService\WSAPIReferenceLibrary.WSAPIService.CustomerServicePersonnelGetListResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WSAPIService\WSAPIReferenceLibrary.WSAPIService.CustomerSuspenseGetBySuspenseIdResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WSAPIService\WSAPIReferenceLibrary.WSAPIService.CustomerSuspenseGetListByCustomerIdResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WSAPIService\WSAPIReferenceLibrary.WSAPIService.CustomerSuspenseInsertResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WSAPIService\WSAPIReferenceLibrary.WSAPIService.EmployeeGetByCodeResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WSAPIService\WSAPIReferenceLibrary.WSAPIService.EmployeeGetByShortNameResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WSAPIService\WSAPIReferenceLibrary.WSAPIService.EmployeeGetListAllResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WSAPIService\WSAPIReferenceLibrary.WSAPIService.EmployeeGetListByLastNamePrefixResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WSAPIService\WSAPIReferenceLibrary.WSAPIService.EmployeeGetListByTypeResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WSAPIService\WSAPIReferenceLibrary.WSAPIService.EmployeeInsertResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WSAPIService\WSAPIReferenceLibrary.WSAPIService.FileChunkBeginResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WSAPIService\WSAPIReferenceLibrary.WSAPIService.FileChunkEndResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WSAPIService\WSAPIReferenceLibrary.WSAPIService.FileChunkSendResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WSAPIService\WSAPIReferenceLibrary.WSAPIService.GLBranchGetByCodeResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WSAPIService\WSAPIReferenceLibrary.WSAPIService.GLBranchGetByShortNameResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WSAPIService\WSAPIReferenceLibrary.WSAPIService.GLBranchGetListAllResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WSAPIService\WSAPIReferenceLibrary.WSAPIService.GLBranchGetListByGLDivisionCodeResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WSAPIService\WSAPIReferenceLibrary.WSAPIService.GLBranchGetListByNamePrefixResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WSAPIService\WSAPIReferenceLibrary.WSAPIService.GLDepartmentGetByCodeResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WSAPIService\WSAPIReferenceLibrary.WSAPIService.GLDepartmentGetByShortNameResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WSAPIService\WSAPIReferenceLibrary.WSAPIService.GLDepartmentGetListAllResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WSAPIService\WSAPIReferenceLibrary.WSAPIService.GLDepartmentGetListByGLBranchCodeResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WSAPIService\WSAPIReferenceLibrary.WSAPIService.GLDepartmentGetListByNamePrefixResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WSAPIService\WSAPIReferenceLibrary.WSAPIService.GLDivisionGetByCodeResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WSAPIService\WSAPIReferenceLibrary.WSAPIService.GLDivisionGetByShortNameResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WSAPIService\WSAPIReferenceLibrary.WSAPIService.GLDivisionGetListAllResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WSAPIService\WSAPIReferenceLibrary.WSAPIService.GLDivisionGetListByNamePrefixResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WSAPIService\WSAPIReferenceLibrary.WSAPIService.GLGroupGetByCodeResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WSAPIService\WSAPIReferenceLibrary.WSAPIService.GLGroupGetByShortNameResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WSAPIService\WSAPIReferenceLibrary.WSAPIService.GLGroupGetListAllResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WSAPIService\WSAPIReferenceLibrary.WSAPIService.GLGroupGetListByGLDepartmentCodeResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WSAPIService\WSAPIReferenceLibrary.WSAPIService.GLGroupGetListByNamePrefixResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WSAPIService\WSAPIReferenceLibrary.WSAPIService.LineOfBusinessGetByCodeResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WSAPIService\WSAPIReferenceLibrary.WSAPIService.LineOfBusinessGetListAllResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WSAPIService\WSAPIReferenceLibrary.WSAPIService.LineOfBusinessGetListResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WSAPIService\WSAPIReferenceLibrary.WSAPIService.PersonalNoteGetListAllResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WSAPIService\WSAPIReferenceLibrary.WSAPIService.PersonalNoteGetListResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WSAPIService\WSAPIReferenceLibrary.WSAPIService.PersonalNoteInsertResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WSAPIService\WSAPIReferenceLibrary.WSAPIService.PlanTypeGetByCodeResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WSAPIService\WSAPIReferenceLibrary.WSAPIService.PlanTypeGetListAllResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WSAPIService\WSAPIReferenceLibrary.WSAPIService.PlanTypeGetListByCompanyCodeResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WSAPIService\WSAPIReferenceLibrary.WSAPIService.PolicyContactGetListResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WSAPIService\WSAPIReferenceLibrary.WSAPIService.PolicyContactGetResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WSAPIService\WSAPIReferenceLibrary.WSAPIService.PolicyContactInsertResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WSAPIService\WSAPIReferenceLibrary.WSAPIService.PolicyGetListByCustomerIdResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WSAPIService\WSAPIReferenceLibrary.WSAPIService.PolicyGetListByCustomerNumberResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WSAPIService\WSAPIReferenceLibrary.WSAPIService.PolicyGetListByPolicyNumberAndDateResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WSAPIService\WSAPIReferenceLibrary.WSAPIService.PolicyGetListByPolicyNumberResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WSAPIService\WSAPIReferenceLibrary.WSAPIService.PolicyGetRemarkResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WSAPIService\WSAPIReferenceLibrary.WSAPIService.PolicyGetResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WSAPIService\WSAPIReferenceLibrary.WSAPIService.PolicyInsertRemarkResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WSAPIService\WSAPIReferenceLibrary.WSAPIService.PolicyInsertResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WSAPIService\WSAPIReferenceLibrary.WSAPIService.PolicyRenewResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WSAPIService\WSAPIReferenceLibrary.WSAPIService.PolicyServicePersonnelListResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WSAPIService\WSAPIReferenceLibrary.WSAPIService.PolicyTransactionPremiumGetListForPolicyResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WSAPIService\WSAPIReferenceLibrary.WSAPIService.PolicyTransactionPremiumGetResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WSAPIService\WSAPIReferenceLibrary.WSAPIService.PolicyTransactionPremiumInsertResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WSAPIService\WSAPIReferenceLibrary.WSAPIService.S1099GetListResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WSAPIService\WSAPIReferenceLibrary.WSAPIService.SearchByPhoneNumberResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WSAPIService\WSAPIReferenceLibrary.WSAPIService.ValueListGetResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WSAPIService\WSAPIReferenceLibrary.WSAPIService.VendorGetByCodeResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WSAPIService\WSAPIReferenceLibrary.WSAPIService.VendorGetListAllResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WSAPIService\WSAPIReferenceLibrary.WSAPIService.VendorGetListByIsCompanyResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WSAPIService\WSAPIReferenceLibrary.WSAPIService.VendorGetListByLastNamePrefixResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WSAPIService\WSAPIReferenceLibrary.WSAPIService.VendorInvoiceGetByIdResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WSAPIService\WSAPIReferenceLibrary.WSAPIService.VendorInvoiceGetListByVendorResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WSAPIService\WSAPIReferenceLibrary.WSAPIService.WSAPISession.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WSAPIService\WSAPIService.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\WSAPIService\WSAPIService0.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\WSAPIService\WSAPIService1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\WSAPIService\WSAPIService2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\WSAPIService\WSAPIService3.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\WSAPIService\WSAPIService4.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\WSAPIService\WSAPIService5.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\WSAPIService\WSAPIServiceContract.wsdl" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Service References\WSAPIService\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\WSAPIService\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\WSAPIService\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\WSAPIService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

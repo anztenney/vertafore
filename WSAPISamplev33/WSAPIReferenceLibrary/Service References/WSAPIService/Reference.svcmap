@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="0f5a04ec-7340-4c06-a709-5aef581e2f15" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings>
+      <CollectionMapping TypeName="System.Collections.Generic.List`1" Category="List" />
+    </CollectionMappings>
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="File:///WSAPIv3Wsdl_8.5.112.2/WSAPIServiceContract.wsdl" Protocol="file" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="WSAPIService3.xsd" MetadataType="Schema" ID="d71fd309-d891-4c63-ba16-f1e10b6a0ce8" SourceId="1" SourceUrl="file:///WSAPIv3Wsdl_8.5.112.2/WSAPIService3.xsd" />
+    <MetadataFile FileName="WSAPIService5.xsd" MetadataType="Schema" ID="0c5d1e25-c564-4192-901a-a650d86fd2ef" SourceId="1" SourceUrl="file:///WSAPIv3Wsdl_8.5.112.2/WSAPIService5.xsd" />
+    <MetadataFile FileName="WSAPIService2.xsd" MetadataType="Schema" ID="b62d8d45-069e-4bb7-b53d-280ce77dc29f" SourceId="1" SourceUrl="file:///WSAPIv3Wsdl_8.5.112.2/WSAPIService2.xsd" />
+    <MetadataFile FileName="WSAPIService0.xsd" MetadataType="Schema" ID="e53c1260-3691-4545-9d42-9a74e648c140" SourceId="1" SourceUrl="file:///WSAPIv3Wsdl_8.5.112.2/WSAPIService0.xsd" />
+    <MetadataFile FileName="WSAPIService4.xsd" MetadataType="Schema" ID="209955bf-7c01-41e3-a861-43798b7fda66" SourceId="1" SourceUrl="file:///WSAPIv3Wsdl_8.5.112.2/WSAPIService4.xsd" />
+    <MetadataFile FileName="WSAPIService.xsd" MetadataType="Schema" ID="757bd88a-4c58-4417-be68-96bd0e9f9ff9" SourceId="1" SourceUrl="file:///WSAPIv3Wsdl_8.5.112.2/WSAPIService.xsd" />
+    <MetadataFile FileName="WSAPIService1.xsd" MetadataType="Schema" ID="14a2828a-f8fc-4b6f-b2a6-efefd623fedc" SourceId="1" SourceUrl="file:///WSAPIv3Wsdl_8.5.112.2/WSAPIService1.xsd" />
+    <MetadataFile FileName="WSAPIServiceContract.wsdl" MetadataType="Wsdl" ID="9ada6ee1-e2b2-4fe9-a729-b65f3c11a696" SourceId="1" SourceUrl="file:///WSAPIv3Wsdl_8.5.112.2/WSAPIServiceContract.wsdl" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>
