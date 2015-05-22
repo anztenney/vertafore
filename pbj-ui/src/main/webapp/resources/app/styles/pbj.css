@@ -1,0 +1,9 @@
+.pageHeader {
+	background: url("img/banner1.png") no-repeat;
+	text-align: center;
+	background-position: center;
+}
+
+#body {
+	text-align: center;
+}
