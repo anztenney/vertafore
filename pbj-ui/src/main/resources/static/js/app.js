@@ -1,14 +1,17 @@
-var pbjModule = angular.module("pbjModule", [ 'ngRoute', 'demoControllers' ]);
+angular.module('pbjModule', [ 'ngRoute', 'demoControllers' ]).config(function($routeProvider, $httpProvider) {
 
-pbjModule.config([ '$routeProvider', function($routeProvider) {
-	$routeProvider.when('/hello', {//C:/dev/vertafore/pbj-ui/src/main/webapp/WEB-INF
-		templateUrl : 'views/Hello.html',
+	$routeProvider.when('/', {
+		templateUrl : 'home.html',
+		controller : 'home'
+	}).when('/login', {
+		templateUrl : 'login.html',
 		controller : 'HelloController'
-	}).when('/goodbye/:userId', {
-		// userId - variable from URL
-		templateUrl : 'views/Goodbye.html',
-		controller : 'GoodbyeController'
-	}).otherwise({
-		redirectTo : '/hello'
-	});
-} ]);
+	}).otherwise('/');
+
+	$httpProvider.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
+
+}).controller('home', function($scope, $http) {
+	$http.get('/resource/').success(function(data) {
+		$scope.greeting = data;
+	})
+});
